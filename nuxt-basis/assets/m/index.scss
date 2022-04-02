@@ -1,0 +1,78 @@
+@media screen and (max-width: 640px) and (max-device-width: 640px) {
+  body {
+    background: rgb(234, 246, 250);
+  }
+  .todo-title {
+    margin-bottom: 200px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 32px;
+    color: #069;
+    text-align: center;
+  }
+  .todo-desc {
+    font-size: 28px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+  }
+  .beauty-image {
+    .carousel-box {
+      margin: 0 auto;
+      width: 500px;
+      height: 500px;
+      .el-carousel__container, .el-carousel__item {
+        display: block;
+        width: 500px;
+        height: 500px;
+      }
+    }
+    img {
+      width: 500px;
+      height: 500px;
+      vertical-align: top;
+    }
+  }
+  .trans-box {
+    height: 50px;
+  }
+  .beauty-tit {
+    height: 50px;
+    line-height: 50px;
+    font-size: 32px;
+  }
+  .video-box-bg {
+    padding: 100px 0;
+    background: #060425;
+  }
+  .video-box {
+    position: relative;
+    z-index: 1;
+    width: 576px;
+    height: 754px;
+    background: url('@/assets/images/v.png') center center no-repeat;
+    background-size: 576px 754px;
+    .video-item {
+      position: absolute;
+      z-index: 9;
+      top: 25px;
+      left: 185px;
+      width: 238px;
+      height: 499px;
+      line-height: 499px;
+      color: #000;
+      font-size: 30px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.6);
+      transform: rotate(9.25deg);
+      border-radius: 30px;
+    }
+  }
+
+  /* 第二页 */
+  .second-box {
+    width: 100%;
+    height: 100vh;
+    background: rgba(247, 174, 224, 0.2);
+  }
+}
