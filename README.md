@@ -14,3 +14,5 @@
 > applets-basis: 小程序相关的框架搭建，引申 uni-app 等
 
 > koa-basis: koa框架的基础实现
+
+> nuxt-basis: 探索vue的SSR技术，引申 next.js(React对应框架)
