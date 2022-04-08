@@ -1,6 +1,6 @@
 <!-- > ![vue-3-basis](./public/resource/img/preview.png) -->
 <div align="center">
-    <img src=./public/resource/img/preview.png width=80% />
+    <img src=./public/resource/img/preview.png width=100% />
 </div>  
 
 ## Preparation
