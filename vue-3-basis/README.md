@@ -1,3 +1,8 @@
+<!-- > ![vue-3-basis](./public/resource/img/preview.png) -->
+<div align="center">
+    <img src=./public/resource/img/preview.png width=80% />
+</div>  
+
 ## Preparation
 
 - [node](http://nodejs.org/) and [git](https://git-scm.com/) - Project development environment
