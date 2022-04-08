@@ -1,1 +1,3 @@
-# webpack基础框架搭建
+# webpack基础框架搭建  
+
++ module Federation
