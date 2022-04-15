@@ -12,15 +12,12 @@ export default class List extends Component {
 
   componentDidMount() {
     PubSub.subscribe('updateAppState', (msg, data) => {
-      // console.log(msg, data)
+      console.log(msg, data)
       this.setState({
         ...this.state,
         ...data
       })
     })
-    // setTimeout(() => {
-    //   PubSub.unsubscribe('updateAppState')
-    // }, 5000)
   }
 
   render() {

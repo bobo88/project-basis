@@ -1,0 +1,16 @@
+/* 登录样式 & 首页样式 */
+.login-component, .home-component {
+  background: url('../images/bg.png') center center no-repeat;
+}
+.user-name {
+  color: $colorF;
+  background: $bgMainColor;
+  .color-normal {
+    color: $colorF;
+  }
+}
+.main-title {
+  color: $colorBlue;
+  font-size: 20px;
+  font-weight: bold;
+}

@@ -1,0 +1,655 @@
+@import "variables";
+
+/* 通用ui */
+/* ============================================================
+  对齐方式
+============================================================ */
+.tc {
+  text-align: center;
+}
+
+.tr {
+  text-align: right;
+}
+
+.tl {
+  text-align: left;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.vt {
+  vertical-align: top;
+}
+
+.vm {
+  vertical-align: middle;
+}
+
+.pr {
+  position: relative;
+}
+
+.pb {
+  position: absolute;
+}
+
+/* ============================================================
+  间距
+============================================================ */
+.pm0{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.mt5 {
+  margin-top: 5px;
+}
+.mt10 {
+  margin-top:10px;
+}
+.mt20 {
+  margin-top:20px;
+}
+.mt30 {
+  margin-top:30px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.mr30 {
+  margin-right: 30px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.ml15 {
+  margin-left: 15px;
+}
+
+.ml20 {
+  margin-left: 20px;
+}
+
+.ml30 {
+  margin-left: 30px;
+}
+
+.pt5 {
+  padding-top: 5px;
+}
+
+.pt10 {
+  padding-top: 10px;
+}
+
+.pt20 {
+  padding-top: 20px;
+}
+
+.pt30 {
+  padding-top: 30px;
+}
+
+.pt50 {
+  padding-top: 50px;
+}
+
+.pb5 {
+  padding-bottom: 5px;
+}
+
+.pb10 {
+  padding-bottom: 10px;
+}
+
+.pb20 {
+  padding-bottom: 20px;
+}
+
+.pb30 {
+  padding-bottom: 30px;
+}
+
+.pr5 {
+  padding-right: 5px;
+}
+
+.pr10 {
+  padding-right: 10px;
+}
+
+.pr20 {
+  padding-right: 20px;
+}
+
+.pr30 {
+  padding-right: 30px;
+}
+
+.pr100 {
+  padding-right: 100px;
+}
+
+.pl0{
+  padding-left: 0px;
+}
+.pl5 {
+  padding-left: 5px;
+}
+
+.pl10 {
+  padding-left: 10px;
+}
+
+.pl20 {
+  padding-left: 20px;
+}
+
+.pl30 {
+  padding-left: 30px;
+}
+
+.pl100 {
+  padding-left: 100px;
+}
+
+/* ============================================================
+  字号
+============================================================ */
+.f12 {
+  font-size: 12px;
+}
+
+.f14 {
+  font-size: 14px;
+}
+
+.f16 {
+  font-size: 16px;
+}
+
+.f18 {
+  font-size: 18px;
+}
+
+.f20 {
+  font-size: 20px;
+}
+
+.f24 {
+  font-size: 24px;
+}
+
+.f30 {
+  font-size: 30px;
+}
+
+.fb {
+  font-weight: bold;
+}
+
+.mainFontColor {
+  color: $mainFontColor;
+}
+
+.linkColor {
+  color: #409eff;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: noWrap;
+}
+
+.w100Percent {
+  width: 100%;
+}
+
+.mark {
+  color: #67C23A;
+  font-weight: bold;
+}
+
+.color3 {
+  color: #333;
+}
+
+.color6 {
+  color: #666;
+}
+
+.color9 {
+  color: #999;
+}
+
+.color-link {
+  color: #409EFF;
+
+  &:hover {
+    color: #66b1ff;
+  }
+}
+
+.color-success {
+  color: #67C23A;
+
+  &:hover {
+    color: #85ce61;
+  }
+}
+
+.color-warning {
+  color: #E6A23C;
+
+  &:hover {
+    color: #ebb563;
+  }
+}
+
+.color-danger {
+  color: #F56C6C;
+  margin-right: 4px;
+  &:hover {
+    color: #f78989;
+  }
+}
+
+.color-info {
+  color: #909399;
+
+  &:hover {
+    color: #a6a9ad;
+  }
+}
+
+/* ============================================================
+  边框
+============================================================ */
+.borderB {
+  border-bottom: 1px solid $mainColor;
+}
+
+.borderT {
+  border-top: 1px solid $mainColor;
+}
+
+/* ============================================================
+  宽高
+============================================================ */
+.w50 {
+  width: 50px;
+}
+
+.w80 {
+  width: 80px;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.w120 {
+  width: 120px;
+}
+.w125 {
+  width: 125px;
+}
+.w130 {
+  width: 130px;
+}
+
+.w150 {
+  width: 150px;
+}
+
+.w180 {
+  width: 180px;
+}
+
+.w200 {
+  width: 200px;
+}
+
+.w220 {
+  width: 220px;
+}
+
+.w230 {
+  width: 230px;
+}
+
+.w240 {
+  width: 240px;
+}
+
+.w250 {
+  width: 250px;
+}
+
+.w300 {
+  width: 300px !important;
+}
+
+.w400 {
+  width: 400px;
+}
+
+.w500 {
+  width: 500px;
+}
+
+.w600 {
+  width: 600px;
+}
+
+.w800 {
+  width: 800px;
+}
+
+// 高度
+.h30{
+  height: 30px;
+}
+
+.lh34 {
+  line-height: 34px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
+/* ============================================================
+   行数缩略
+============================================================ */
+.wk-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.wk-line2 {
+  -webkit-line-clamp: 2;
+}
+
+.wk-line3 {
+  -webkit-line-clamp: 3;
+}
+
+.wk-line4 {
+  -webkit-line-clamp: 4;
+}
+
+/* ============================================================
+   旋转
+============================================================ */
+.ui-rotate45 {
+  transform: rotate(-45deg);
+}
+
+/* ============================================================
+   修改鼠标样式
+ ============================================================ */
+.wk-pointer {
+  cursor: pointer;
+}
+
+/* ============================================================
+   文本不可被选中
+ ============================================================ */
+.wk-unselect {
+  user-select: none;
+}
+
+/* ============================================================
+   select框美化
+ ============================================================ */
+.select-box {
+  margin-top: 0px;
+  outline: none;
+  border: 1px solid #BBBBBB;
+  border-radius: 4px;
+  position: relative;
+}
+
+.select-item {
+  height: 3rem;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  font-size: 1.4rem;
+  padding: 0px 10px;
+  display: block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  color: #333333;
+  border-radius: 4px;
+}
+
+/* ============================================================
+  table表头美化
+ ============================================================ */
+.el-table {
+  thead {
+    color: $color3;
+  }
+}
+
+.el-menu {
+  border-right: none !important;
+}
+
+// .el-submenu.is-opened .el-submenu__title {
+//   border-bottom: 1px dashed #909399;
+// }
+
+/* ============================================================
+  音频播放器美化
+ ============================================================ */
+.aplayer {
+  margin: 0 !important;
+  box-shadow: none !important;
+  text-align: center !important;
+}
+
+/* ============================================================
+  弹窗样式
+ ============================================================ */
+.pop-ups {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.pop-ups-cont {
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 15px;
+  width: 650px;
+  height: 550px;
+  color: #000;
+  background: #fff;
+  border-radius: 5px;
+  overflow: auto;
+
+  .tit {
+    width: 50px;
+  }
+
+  .cont {
+    width: 500px;
+  }
+}
+
+/* ============================================================
+  自定义小尺寸的input框样式
+ ============================================================ */
+.diy-input-size {
+  width: 40px;
+
+  .el-input__inner {
+    margin-left: 5px;
+    padding: 0 5px;
+    height: 22px;
+  }
+}
+
+/* 进度条 */
+.progress-bar-wrapper {
+  width: 100%;
+  height: 10px;
+
+  .progress-bar-bg {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+
+    .progress-bar {
+      height: 10px;
+      background: #069;
+      border-radius: 5px;
+    }
+  }
+}
+
+/* 去掉input默认样式 */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
+input::-moz-outer-spin-button,
+input::-moz-inner-spin-button {
+  -moz-appearance: none !important;
+  margin: 0;
+}
+
+input::-ms-outer-spin-button,
+input::-ms-inner-spin-button {
+  -ms-appearance: none !important;
+  margin: 0;
+}
+
+// 提示
+.tips {
+  height: 20px;
+  line-height: 20px;
+  color: #999;
+  font-size: 12px;
+
+  .icon-tips {
+    color: #f60;
+    font-size: 16px;
+  }
+}
+
+.icon-fanhui {
+  font-size: 30px;
+  color: #409EFF;
+  cursor: pointer;
+}
+
+// 主体 面包屑下面的search组件
+.tit {
+  display: inline-block;
+  width: 100px;
+  word-break: break-word;
+}
+.tc-tit {
+  display: inline-block;
+  width: 125px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+// 右侧搜索框
+.search-cont {
+  padding: 10px;
+}
+
+.setAreaCountry {
+  &.search-comp {
+    .tc-tit {
+      width: 100px;
+      text-align: left;
+      margin-right: 0;
+    }
+    .el-select {
+      width: 150px;
+    }
+  }
+}
+
+// el-form-item
+.el-form-item .el-form-item{
+  margin-bottom: 0;
+}

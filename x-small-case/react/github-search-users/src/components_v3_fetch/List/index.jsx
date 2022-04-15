@@ -18,9 +18,7 @@ export default class List extends Component {
         ...data
       })
     })
-    // setTimeout(() => {
-    //   PubSub.unsubscribe('updateAppState')
-    // }, 5000)
+    // PubSub.unsubscribe('updateAppState')
   }
 
   render() {

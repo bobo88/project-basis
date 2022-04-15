@@ -1,30 +1,11 @@
 import React, { Component } from 'react'
-import PubSub from 'pubsub-js'
 import './index.css'
 
 export default class List extends Component {
-  state = {
-    users: [],
-    isLoading: false,
-    isFirst: true,
-    err: ''
-  }
-
-  componentDidMount() {
-    PubSub.subscribe('updateAppState', (msg, data) => {
-      // console.log(msg, data)
-      this.setState({
-        ...this.state,
-        ...data
-      })
-    })
-    // setTimeout(() => {
-    //   PubSub.unsubscribe('updateAppState')
-    // }, 5000)
-  }
-
   render() {
-    const { users, isLoading, isFirst, err } = this.state
+    const { users, isLoading, isFirst, err } = this.props
+    console.log(1234545, this.props)
+    // {users} - {isLoading ? 'yy' : 'xx'} - {isFirst ? '34' : '23'} - {err}
     return (
       <div className='user-box'>
         { 

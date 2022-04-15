@@ -16,6 +16,7 @@ export default class Search extends Component {
       isFirst: false,
       isLoading: true
     })
+    // 或 await 加 try catch
     fetch('https://api.github.com/search/users?q=' + keyword).then(
       res => {
         return res.json()
