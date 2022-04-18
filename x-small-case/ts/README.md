@@ -2,10 +2,11 @@
 *一系列学习「 TS 」的小demo*
 
 --------------------------------------
-### 初识TS：
-> TS是以JavaScript为基础构建的语言，可以在任何支持JavaScript的平台中执行（需要编译成JS）；  
-> TS是JavaScript的一个超集，TS拓展了JavaScript，并添加了类型；  
-> gadsg  
+### 项目运行：
+> 1. 根目录下运行命令： `tsc -w`，生成`dist`目录  
+> 2. 新开DOS窗口，进入`dist`目录，运行`node **_**.js`即可查看代码运行效果，或不进入`dist`目录，运行`node dist/**_**.js`    
+> 3. 哔哩哔哩中的学习视频，如果觉得「2倍速」还是很慢， 又不想一直按「右箭头」，则可以在控制台运行`$('.bilibili-player-video').find('video')[0].playbackRate = 3`，其中 ‘3’表示速度  
+> 4. TODO  
 
 
 
