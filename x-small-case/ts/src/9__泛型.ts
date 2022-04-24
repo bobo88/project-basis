@@ -1,8 +1,10 @@
 ;(function(){
-    function Add<T>(a: T): T {
-        return a
+    // 泛型约束
+
+    function Add<T extends number>(a: T, b: T): number {
+        return a + b
     }
-    const res = Add<number>(1)
+    const res = Add(1, 3)
     console.log(res)
 
     class MyClass<T> {

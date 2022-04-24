@@ -1,8 +1,18 @@
 ;(function(){
-    type myType = {
-        name: string,
-        age: number
+    /**
+     * TypeScript的核心原则之一是对值所具有的结构进行类型检查。 它有时被称做“鸭式辨型法”或“结构性子类型化”。 
+     * 在TypeScript里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。
+     */
+
+    // readonly vs const
+    // 最简单判断该用readonly还是const的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若做为属性则使用readonly。
+    interface SquareConfig {
+        color?: string;
+        width?: number;
+        [propName: string]: any;
     }
+    
+    // 可索引的类型
 
     /**
      * 接口可以在定义类的时候去限制类的结构
@@ -24,7 +34,7 @@
     }
     console.log(p1)
 
-    // 定义类时，可以使类去实现一个接口
+    // 类类型： 定义类时，可以使类去实现一个接口
     class Person implements myInterface {
         _name: string;
         _age: number;
