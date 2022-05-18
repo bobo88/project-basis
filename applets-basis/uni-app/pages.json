@@ -1,0 +1,138 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/enterIndex",
+			"style": {
+				"navigationBarTitleText":"启动页",
+				"navigationStyle":"custom"
+			}
+		},{
+			"path": "pages/register/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		},{
+			"path": "pages/login/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		},{
+			"path": "pages/index/webView",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		},{
+			"path": "pages/my/index",
+			"style": {
+				"navigationStyle":"custom",
+				"navigationBarTitleText":"个人信息",
+				"navigationBarBackgroundColor":"#1D1E1F",
+				"navigationBarTextStyle":"white"
+			}
+		},{
+			"path": "pages/my/updateNickname",
+			"style": {
+            	"navigationStyle":"custom",
+				"navigationBarTitleText":"修改昵称",
+				"navigationBarBackgroundColor":"#1D1E1F",
+				"navigationBarTextStyle":"white"
+			}
+		},{
+			"path": "pages/my/card",
+			"style": {
+				"navigationBarTitleText":"卡券",
+				"navigationBarBackgroundColor":"#1D1E1F",
+				"navigationBarTextStyle":"white"
+			}
+		},{
+			"path": "pages/my/starCoin",
+			"style": {
+				"navigationBarTitleText":"星币",
+				"navigationBarBackgroundColor":"#1D1E1F",
+				"navigationBarTextStyle":"white"
+			}
+		},{
+			"path": "pages/my/exchangeCenter",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		},{
+			"path": "pages/my/exchangeSuccess",
+			"style": {
+				"navigationBarTitleText":"兑换结果",
+				"navigationBarBackgroundColor":"#1D1E1F",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/my/exchangePhone",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path": "pages/my/bugRecord",
+			"style": {
+				"navigationBarTitleText":"购买记录",
+				"navigationBarBackgroundColor":"#1D1E1F",
+				"navigationBarTextStyle":"white"
+			}
+		},
+		{
+			"path": "pages/my/bugRecordDetail",
+			"style": {
+				"navigationBarTitleText":"购买记录详情",
+				"navigationBarBackgroundColor":"#1D1E1F",
+				"navigationBarTextStyle":"white"
+			}
+		}
+	    ,{
+            "path" : "pages/order/order",
+            "style": {
+            	"navigationStyle":"custom"
+            }
+        }
+        ,{
+            "path" : "pages/order/status",
+            "style" :                                                                                    
+            {
+            	"navigationStyle":"custom",
+                "navigationBarTitleText": "支付结果",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+		,{
+		    "path" : "pages/order/result",
+		    "style" :                                                                                    
+		    {
+		    	"navigationStyle":"custom",
+		        "navigationBarTitleText": "支付结果",
+		        "enablePullDownRefresh": false
+		    }
+		    
+		}
+        ,{
+            "path" : "pages/order/renew",
+            "style" :                                                                                    
+            {
+				"navigationStyle":"custom",
+                "navigationBarTitleText": "续费TODO",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "DEMO云游戏",
+		"navigationBarBackgroundColor": "#1D1E1F",
+		"backgroundColor": "#1D1E1F"
+	}
+}
