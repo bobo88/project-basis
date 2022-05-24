@@ -35,13 +35,12 @@ exports.htmlPlugin = configs => {
             conf = merge(conf, {
                 minify: {
                     removeComments: true, // 删除 html 中的注释代码
-                    collapseWhitespace: true, // 删除 html 中的空白符
+                    collapseWhitespace: false, // 删除 html 中的空白符
                     // removeAttributeQuotes: true // 删除 html 元素中属性的引号
                 },
                 chunksSortMode: 'manual' // 按 manual 的顺序引入
             })
         }
-        
         arr.push(new HtmlWebpackPlugin(conf))
     })
     

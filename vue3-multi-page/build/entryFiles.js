@@ -29,6 +29,6 @@ exports.getEntries = () => {
         // 以键值对的形式存储
         map[filename] = filePath 
     })
-    console.log('-----------------Map: ', map)
+    console.log('-------绝对路径: ', map)
     return map
 }

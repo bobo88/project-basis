@@ -8,24 +8,24 @@ exports.setPages = configs => {
     // ===== 注意：如果路径是动态的，则必须替换分隔符
     let replacePath = (PAGE_PATH + '/*/*.js').replace(/\\/g, '/')
     let entryFiles = glob.sync(replacePath) // 同步读取所有入口文件
-    // let entryFiles = glob.sync(PAGE_PATH + '/*/*.js').replace(/\\/g, '/')
-    console.log('66666', entryFiles)
     let map = {}
 
     entryFiles.forEach(filePath => {
         let filename = filePath.substring(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.'))
-        let tmp = filePath.substring(0, filePath.lastIndexOf('/'))
+        let tmp = filePath.substring(0, filePath.lastIndexOf('/')) + '/' + filename
         // console.log(filePath)
         let conf = {
             // page 的入口
-            entry: filePath, 
+            entry: filePath,
+            publicPath: '../',
+            // assetsDir: filename,
             // 模板来源
             template: tmp + '.html', 
             // 在 dist/index.html 的输出
-            filename: filename + '.html', 
+            filename:  filename + '/' + filename + '.html', 
             // 页面模板需要加对应的js脚本，如果不加这行则每个页面都会引入所有的js脚本
             chunks: ['manifest', 'vendor', filename], 
-            inject: true,
+            inject: true, // 是否注入资源
         };
 
         if (configs) {
@@ -36,7 +36,7 @@ exports.setPages = configs => {
             conf = merge(conf, {
                 minify: {
                     removeComments: true, // 删除 html 中的注释代码
-                    collapseWhitespace: true, // 删除 html 中的空白符
+                    collapseWhitespace: false, // 删除 html 中的空白符
                     // removeAttributeQuotes: true // 删除 html 元素中属性的引号
                 },
                 chunksSortMode: 'manual'// 按 manual 的顺序引入
@@ -45,6 +45,6 @@ exports.setPages = configs => {
 
         map[filename] = conf
     })
-
+    console.log('============= 多页面配置数据：', map)
     return map
 }

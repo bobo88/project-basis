@@ -8,10 +8,9 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "core-js": "^3.8.3",
-    "glob": "^8.0.3",
-    "html-webpack-plugin": "^5.5.0",
-    "merge": "^2.1.1",
+    "element-plus": "^2.2.2",
     "vue": "^3.2.13"
   },
   "devDependencies": {
@@ -24,6 +23,15 @@
     "@vue/eslint-config-typescript": "^9.1.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
+    "glob": "^8.0.3",
+    "html-webpack-plugin": "^5.5.0",
+    "merge": "^2.1.1",
+    "node-sass": "^7.0.1",
+    "postcss": "^8.4.14",
+    "postcss-loader": "6.1.0",
+    "postcss-preset-env": "^7.6.0",
+    "postcss-pxtorem": "^6.0.0",
+    "sass-loader": "12.0.0",
     "typescript": "~4.5.5"
   }
 }
