@@ -1,12 +1,14 @@
 const path = require('path');
+const BUILD_KEY = require('./buildKey');
 const merge = require('merge');
 const glob = require('glob');
 const PAGE_PATH = path.resolve(__dirname, '../src/views');
 
 // pages 多入口配置
 exports.setPages = configs => {
+    let END_PATH = BUILD_KEY !== null ? `/${BUILD_KEY}/*.js` : '/*/*.js';
     // ===== 注意：如果路径是动态的，则必须替换分隔符
-    let replacePath = (PAGE_PATH + '/*/*.js').replace(/\\/g, '/')
+    let replacePath = (PAGE_PATH + END_PATH).replace(/\\/g, '/')
     let entryFiles = glob.sync(replacePath) // 同步读取所有入口文件
     let map = {}
 

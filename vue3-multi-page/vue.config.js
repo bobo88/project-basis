@@ -13,7 +13,7 @@ module.exports = defineConfig({
   // 多页面配置
   pages: utils.setPages(),
   assetsDir: 'static',
-  // outputDir: `dist`,
+  outputDir: `dist__${process.env.NODE_ENV}`,
   // 这行代码很重要
   // outputDir: process.env.NODE_ENV === 'production' ? `dist/${moduleName}` : 'dist',
   // indexPath: './[name].html',

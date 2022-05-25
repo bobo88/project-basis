@@ -1,6 +1,6 @@
 /* entryFiles.js */
 const path = require('path');
-
+const BUILD_KEY = require('./buildKey');
 // glob 是 webpack 安装时依赖的一个第三方模块，该模块允许你使用 * 等符号,
 // 例如 lib/*.js 就是获取 lib 文件夹下的所有 js 后缀名的文件
 const glob = require('glob');
@@ -14,8 +14,9 @@ const PAGE_PATH = path.resolve(__dirname, '../src/views');
 * 那么就作为入口处理
 */
 exports.getEntries = () => {
+    let END_PATH = BUILD_KEY !== null ? `/${BUILD_KEY}/*.js` : '/*/*.js';
     // ===== 注意：如果路径是动态的，则必须替换分隔符
-    let replacePath = (PAGE_PATH + '/*/*.js').replace(/\\/g, '/')
+    let replacePath = (PAGE_PATH + END_PATH).replace(/\\/g, '/')
     let entryFiles = glob.sync(replacePath) // 同步读取所有入口文件
     let map = {}
     // console.log('===========xx: ', PAGE_PATH, entryFiles)

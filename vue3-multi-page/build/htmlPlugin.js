@@ -1,5 +1,6 @@
 /* htmlPlugin.js */
 const path = require('path');
+const BUILD_KEY = require('./buildKey');
 const merge = require('merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin') // 安装后引用插件
 
@@ -13,7 +14,8 @@ const PAGE_PATH = path.resolve(__dirname, '../src/views');
 // 多页面输出配置
 // 与上面的多页面入口配置相同，读取 page 文件夹下的对应的 html 后缀文件，然后放入数组中
 exports.htmlPlugin = configs => {
-    let entryHtml = glob.sync(PAGE_PATH + '/*/*.html')
+    let END_PATH = BUILD_KEY !== null ? `/${BUILD_KEY}/*.html` : '/*/*.html';
+    let entryHtml = glob.sync(PAGE_PATH + END_PATH)
     let arr = []
     
     entryHtml.forEach(filePath => {

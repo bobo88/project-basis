@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "cross-env NODE_ENV=local vue-cli-service serve --mode local",
+    "build": " cross-env NODE_ENV=production vue-cli-service build --mode production",
+    "build:dev": " cross-env NODE_ENV=development vue-cli-service build --mode development",
+    "build:test": " cross-env NODE_ENV=test vue-cli-service build -- mode test",
+    "build:prod": " yarn build",
+    "build:all": "yarn build && yarn build:dev && yarn build:test",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -21,6 +25,7 @@
     "@vue/cli-plugin-typescript": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
     "glob": "^8.0.3",

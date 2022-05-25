@@ -1,10 +1,14 @@
 // 一、配置axios
 import axios from 'axios'
 // import store from '@/store/index' 如果使用vuex，那么token，userinfo都可以在登录以后存储到store中，不需要使用storage
+
+import { BASE_URL } from '@/config/index'
+
 // 获取浏览器的接口地址。
-let baseUrl = window.location.origin
+// let baseUrl = window.location.origin
 // axios配置
-axios.defaults.baseURL = baseUrl
+axios.defaults.baseURL = BASE_URL
+console.log("🚀 ~ file: http.js ~ line 11 ~ BASE_URL", BASE_URL)
 // 设置请求最大时长
 axios.defaults.timeout = 50000
 axios.defaults.withCredentials = true
