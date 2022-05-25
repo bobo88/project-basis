@@ -6,7 +6,8 @@
     webpack基础框架搭建  
 
 + ⭐ **vue-3-basis:**  
-    vue3.x框架搭建，结合TS  
+    + vue3.x框架搭建，结合TS  
+    + 【vue3多页面打包项目】： vue3 + axios + element-plus + TS + sass
 
 + ⭐ **react-basis:**  
     react基础框架搭建，搭配目前最新版本 + hooks  

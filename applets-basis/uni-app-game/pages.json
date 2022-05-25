@@ -1,0 +1,17 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/enterIndex",
+			"style": {
+				"navigationBarTitleText":"启动页",
+				"navigationStyle":"custom"
+			}
+		}
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "DEMO云游戏",
+		"navigationBarBackgroundColor": "#1D1E1F",
+		"backgroundColor": "#1D1E1F"
+	}
+}

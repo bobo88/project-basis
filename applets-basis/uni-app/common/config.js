@@ -1,13 +1,13 @@
 const baseUrl = window.location.origin
 let uploadKey = ''
-if (baseUrl.includes('client.phone.androidscloud.com')) {
-  uploadKey = 'edv834e74a9c43eaac02'
-} else if (baseUrl.includes('prese.phone.androidscloud')) {
-  uploadKey = '347905r86eb745a1sc38'
+if (baseUrl.includes('cfff')) {
+  uploadKey = 'fffff'
+} else if (baseUrl.includes('fffff')) {
+  uploadKey = 'xxx'
 } else {
-  uploadKey = '3dn9b4585511476691c6'
+  uploadKey = 'xxx'
 }
-const fileUrl = baseUrl.includes('client.phone.androidscloud.com') ? 'https://file.phone.androidscloud.com:8121' : 'http://110.53.221.195:8210'
+const fileUrl = baseUrl.includes('cggggm') ? 'https://gagaga.com:8121' : 'http://1234:8210'
 module.exports = {
     baseUrl: baseUrl,
 	uploadKey: uploadKey,
