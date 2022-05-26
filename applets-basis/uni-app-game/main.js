@@ -27,7 +27,21 @@ Vue.mixin(mixin)
 const app = new Vue({
     store,
     ...App
-})
+});
+
+// require('./util/spsParser');
+// require('./util/config');
+// require('./util/helper');
+// require('./util/aac');
+// const JMuxer = require('./util/jmuxer');
+// require('./util/init');
+
+// import JMuxer from 'jmuxer';
+// const jmuxer = new JMuxer({
+// 	node: 'player',
+// 	debug: true
+// });
+// console.log(58888, jmuxer)
 
 // 引入请求封装
 require('./util/request/index')(app)

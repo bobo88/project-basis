@@ -3,7 +3,9 @@
 	"scripts": {
 		"test": "eslint . --fix"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"jmuxer": "^2.0.4"
+	},
 	"devDependencies": {
 		"eslint": "^8.2.0",
 		"eslint-config-airbnb": "^19.0.0"

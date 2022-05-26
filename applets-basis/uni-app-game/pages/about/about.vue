@@ -3,7 +3,7 @@
 		<!-- <web-view :webview-styles="webviewStyles" src="https://uniapp.dcloud.io/static/web-view.html"></web-view> -->
 		<!-- <web-view  src="../h5-webview/index.html"></web-view> -->
 		<!-- <web-view  src="http://192.168.11.104:2688/index.html"></web-view> -->
-		<web-view  src="/hybrid/html/game.html"></web-view>
+		<web-view  src="/hybrid/html/about/about.html"></web-view>
 		<!-- 11111 -->
 		<!-- width="542" height="300" -->
 		<!-- <video class="video-item" disablePictureInPicture="true" style='object-fit: fill;' playsinline="true"

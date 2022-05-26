@@ -4,14 +4,60 @@
 			"path": "pages/index/enterIndex",
 			"style": {
 				"navigationBarTitleText":"启动页",
-				"navigationStyle":"custom"
+				"navigationStyle": "custom",//设置横屏
+				"pageOrientation": "landscape" //横屏配置，支持auto/portrait/landscape
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText":"主页面",
+				"navigationStyle": "custom",//设置横屏
+				"pageOrientation": "landscape" //横屏配置，支持auto/portrait/landscape
 			}
 		}
+        ,{
+            "path" : "pages/demo/map/map",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "DEMO - 地图",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/about/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/user/user",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/land/land",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "DEMO云游戏",
 		"navigationBarBackgroundColor": "#1D1E1F",
-		"backgroundColor": "#1D1E1F"
+		"backgroundColor": "#1D1E1F",
+		"pageOrientation": "landscape" //横屏配置，支持auto/portrait/landscape
 	}
 }

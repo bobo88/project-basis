@@ -149,5 +149,6 @@
         "devServer" : {
             "https" : false
         }
-    }
+    },
+    "vueVersion" : "2"
 }
