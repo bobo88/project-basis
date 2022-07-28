@@ -36,7 +36,7 @@ export default {
             useTsconfigDeclarationDir: true
         }),
         commonjs({
-            include: 'node_modules/**'
+            include: 'node_modules/**',
         }),
     ],
     // 指出应将哪些模块视为外部模块

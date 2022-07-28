@@ -1,7 +1,7 @@
 console.log('============= CLOUD_GAME_SDK ====================')
 
-import { ceil, spsParser, ue, se, u } from './tools/spsParser'
-import { keycodeMode } from './tools/config'
+import { ceil, spsParser, ue, se, u } from './dep/spsParser'
+import { keycodeMode } from './dep/config'
 import { 
     RequestIFrame,
     makeSharpness,
@@ -19,8 +19,17 @@ import {
     ExexuteSendBitRate,
     makeFrame,
     PrintArry,
-} from './tools/helper'
+} from './dep/helper'
 
+// import './dep/aac'
+
+// 工具类
+import { GameEventToOutSide, bounceFun } from './dep/utils'
+
+// 额外配置：特定游戏的
+import { NSUInteger, remainingTimeData, aiquObj } from './dep/extra'
+
+// 第三方依赖
 import JMuxer from 'jmuxer'
 
 console.log('第三方依赖【JMuxer】引入进来了： ', JMuxer)
@@ -59,52 +68,15 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
     // todo
 };
 
-// 额外配置
-export const NSUInteger = {
-    GameEventInterfaceGetAuthModeError: 3000,
-	/*获取鉴权模式返回错误*/
-	GameEventInterfaceGetAuthModeError404: 3001,
-	/*获取鉴权模式接口失败*/
-	// GameEventInterfaceGetAuthRiskError: 3010,/*风控鉴权返回错误*/
-	// GameEventInterfaceGetAuthRiskError404: 3011,/*风控鉴权接口失败*/
-	GameEventInterfaceGetGameLineupError: 3020,
-	/*排队接口返回错误*/
-	GameEventInterfaceGetGameLineupError404: 3021,
-	/*排队接口接口失败*/
-	GameEventInterfaceGetGameLineupMsg: 4000,
-	/*排队拿卡*/
-	GameEventGetCardOkMsg: 4010,
-	/*拿到安卓卡*/
-	GameEventWebSocketOkMsg: 4011,
-	/*信令通道链接成功*/
-	GameEventCardConnectOkMsg: 4102,
-	/*安卓卡链接成功*/
-	GameEventTipMsg: 5000,
-	/*各种成功后的提示信息*/ // ========================= todo ============
-	GameEventWebSocketTipMsg: 9000,
-	/*信令通道接收到的正常消息转发*/ // ========================= todo ============
-	// GameEventWebSocketCloseMsg: 9001,/*信令通道被关闭*/
-	GameEventReConnectFailMsg: 9002,
-	/*云游戏重连失败*/
-	GameEventConnectBeClose: 9003,
-	/*云游戏推流关闭*/
-	GameEventWebSocketPay: 10000,
-	/*云游戏支付透传*/
-	GameEventWebSocketAiqu: 10001,
-	/*云游戏爱趣定制透传消息*/ // ========================= todo ============
-}
-
-export const aiquObj = {
-    accountLoginStatus: '',
-	accountPayStatus: ''
-}
-
-export const remainingTimeData = {
-    
-}
-
 console.log(ceil, spsParser, ue, se, u)
 
-export const Sum = (a: number, b: number) => {
-    return a + b
+export {
+	// 导出： 额外配置（特定游戏的）
+	NSUInteger, remainingTimeData, aiquObj,
+	// 导出： 工具类
+	GameEventToOutSide, bounceFun
 }
+
+// export const Sum = (a: number, b: number) => {
+//     return a + b
+// }
