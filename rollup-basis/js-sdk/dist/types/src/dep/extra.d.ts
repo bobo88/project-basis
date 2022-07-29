@@ -14,8 +14,4 @@ export declare const NSUInteger: {
     GameEventWebSocketPay: number;
     GameEventWebSocketAiqu: number;
 };
-export declare const aiquObj: {
-    accountLoginStatus: string;
-    accountPayStatus: string;
-};
-export declare const remainingTimeData: {};
+export declare const extraData: ExtraDataType;

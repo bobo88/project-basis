@@ -33,11 +33,12 @@ export const NSUInteger = {
 	/*云游戏爱趣定制透传消息*/ // ========================= todo ============
 }
 
-export const aiquObj = {
-    accountLoginStatus: '',
-	accountPayStatus: ''
-}
+export const extraData: ExtraDataType = {
+    remainingTimeData: {},
+    payData: {},
 
-export const remainingTimeData = {
-    
+	// 爱趣相关
+	aiquData: '',
+	accountLoginStatus: '',
+	accountPayStatus: '',
 }
