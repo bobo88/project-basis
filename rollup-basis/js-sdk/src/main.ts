@@ -100,11 +100,10 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
     version: '1.0.0',
     // 配置信息
     sdkInit: (options) => {
-        console.log('Init xxxx', options)
 		myVideo = document.getElementById(options.videoNode);
 		myContainer = document.getElementById(options.containerNode)
 
-		console.log('==== SDK Init ========')
+		console.log('==== SDK Init ========', options)
 		var html = document.querySelector("html");
 		if (html) {
 			var clientWidth = html.getBoundingClientRect().width;
