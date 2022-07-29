@@ -12253,9 +12253,6 @@
 	            var buffer = ExexuteKeyDown(4);
 	            ws.send(buffer);
 	        };
-	        myVideo.error = function (event) {
-	            console.log("报错:", event);
-	        };
 	        myVideo.addEventListener('resize', function (e) {
 	            // document.querySelector('[data-content="resolution"]').textContent = [
 	            // 	e.target.videoWidth,
@@ -12391,6 +12388,22 @@
 	        else {
 	            posX = (x * videoWidth * 1.0) / myVideo.clientWidth;
 	            posY = (y * videoHeight * 1.0) / myVideo.clientHeight;
+	        }
+	        return {
+	            x: posX,
+	            y: posY
+	        };
+	    },
+	    convertPos: function (x, y) {
+	        var posX, posY; //500, 800
+	        // 如果是横屏
+	        if (isLandscape) {
+	            posX = (x / myVideo.clientWidth) * videoWidth * 1.0;
+	            posY = (y / myVideo.clientHeight) * videoHeight * 1.0;
+	        }
+	        else {
+	            posX = (1 - y / myVideo.clientHeight) * videoHeight * 1.0;
+	            posY = (x / myVideo.clientWidth) * videoWidth * 1.0;
 	        }
 	        return {
 	            x: posX,
