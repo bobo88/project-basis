@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "rollup -w -c rollup.config.js",
     "test": "jest"
   },
   "keywords": [],

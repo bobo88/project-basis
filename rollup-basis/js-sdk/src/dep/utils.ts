@@ -18,5 +18,7 @@ export const bounceFun = bounce(300, fn);
 // 防抖函数 end -------------------------
 
 export const Tools = {
-    a: '123'
+    a: '123',
+	b: '234',
+	d: '345'
 }
