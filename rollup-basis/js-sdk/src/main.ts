@@ -151,7 +151,7 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		}
 	},
 	// 获取token 'appKey', 'id'
-	getSdkToken: (appKey, id, baseUrl) => {
+	getSdkToken: (appKey, id, baseUrl, delayTime) => {
 		const httpsUrl = typeof baseUrl != 'undefined' && baseUrl ? baseUrl : SDK_CONFIG.apiURL;
 		$.ajax({
 			url: httpsUrl + SDK_CONFIG.getSdkTokenURL,
@@ -162,7 +162,7 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			success: function(res) {
 				console.log('获取sdktoken', res)
 				if (res.code === 200) {
-					CLOUD_GAME_SDK.lineup(res.data, id, baseUrl)
+					CLOUD_GAME_SDK.lineup(res.data, id, baseUrl, delayTime)
 				} else {
 					bounceFun(NSUInteger.GameEventInterfaceGetAuthModeError);
 				}
@@ -173,7 +173,7 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		})
 	},
 	// 排队拿卡
-	lineup: (token, id, baseUrl) => {
+	lineup: (token, id, baseUrl, delayTime) => {
 		const httpsUrl = typeof baseUrl != 'undefined' && baseUrl ? baseUrl : SDK_CONFIG.apiURL;
 		// 状态打点
 		bounceFun(NSUInteger.GameEventInterfaceGetGameLineupMsg);
@@ -217,8 +217,8 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 						// 5秒轮询排队
 						if (!SDK_CONFIG.queueGetCard) {
 							SDK_CONFIG.queueGetCard = setInterval(() => {
-								CLOUD_GAME_SDK.lineup(token, id, baseUrl)
-							}, SDK_CONFIG.lineupTime);
+								CLOUD_GAME_SDK.lineup(token, id, baseUrl, delayTime)
+							}, delayTime || SDK_CONFIG.lineupTime);
 						}
 					} else {
 						extraData.remainingTimeData = undefined;
@@ -644,7 +644,7 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			frameType: frameType
 		};
 	},
-	xxxx: () => {
+	todo: () => {
 
 	},
 	decodeAAC: (data) => {
