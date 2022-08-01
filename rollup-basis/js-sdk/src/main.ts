@@ -1,6 +1,6 @@
 console.log('============= CLOUD_GAME_SDK ====================')
 
-import { SDK_CONFIG } from './dep/config'
+import { SDK_CONFIG, CARD_INFO } from './dep/config'
 
 import { ceil, spsParser, ue, se, u } from './dep/sps_parser'
 import { keycodeMode } from './dep/keycode'
@@ -24,7 +24,8 @@ import {
 	checkMultiLoginInfo,
 } from './dep/helper'
 
-import './dep/aac'
+import { AAC_MODULE } from './dep/aac'
+console.log(888888, AAC_MODULE)
 
 // 工具类
 import { GameEventToOutSide, bounceFun } from './dep/utils'
@@ -33,16 +34,19 @@ import { GameEventToOutSide, bounceFun } from './dep/utils'
 import { NSUInteger, extraData } from './dep/extra'
 
 // 第三方依赖
-import JMuxer from 'jmuxer'
+import { JMuxer } from './dep/jmuxer'
+import { PCMPlayer } from './dep/pcm-player'
 import $ from 'jquery'
 
 // console.log('AAC.ts Module：', Module)
 // console.log('第三方依赖【JMuxer】引入进来了： ', JMuxer)
 // console.log(ceil, spsParser, ue, se, u)
 
+
 export {
 	// 导出：SDK配置集合（相关变量）
 	SDK_CONFIG,
+	CARD_INFO,
 	// 导出： 额外配置（特定游戏的）
 	NSUInteger, extraData,
 	// 导出： 工具类
@@ -50,58 +54,18 @@ export {
 }
 
 // ============================ SDK Init ======================================
-let {
-	ws, 
-	socket,
-	controlWs, 
-	jmuxer,
-	myVideo,
-	myContainer,
-	flag,
-	isVisuable,
-	isFeed,
-	isDrag,
-	isFinish,
-	hasSwitch,
-	isWaitSps,
-	disconnect,
-	isPay,
-	isLandscape,
-	videoWidth,
-	videoHeight,
-	curTime,
-	requestTime,
-	oldTime,
-	newTime,
-	outTime,
-	outsetInterval,
-	clickPlay,
-	decodeCount,
-	h264Buffer,
-	sharpnessLevel,
-	JMuxerOptions,
-	socketURL,
-	socketExtranetURL,
-	sn,
-	token,
-	payURL,
-	apiURL,
-	getSdkTokenURL,
-	lineUpURL,
-} = SDK_CONFIG;
-
-var Module = typeof Module !== "undefined" ? Module: {};
+const { Module } = AAC_MODULE
 Module.onRuntimeInitialized = function() {
 	console.log("Wasm 加载成功!")
-	isFinish = true;
+	SDK_CONFIG.isFinish = true;
 }
 
 export const CLOUD_GAME_SDK: CloudGameSdk = {
     version: '1.0.0',
     // 配置信息
     sdkInit: (options) => {
-		myVideo = document.getElementById(options.videoNode);
-		myContainer = document.getElementById(options.containerNode)
+		SDK_CONFIG.myVideo = document.getElementById(options.videoNode);
+		SDK_CONFIG.myContainer = document.getElementById(options.containerNode)
 
 		console.log('==== SDK Init ========', options)
 		var html = document.querySelector("html");
@@ -112,9 +76,16 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		
 		const clientheight = window.screen.height;
 		const clientwidth = window.screen.width;
-		myVideo.setAttribute('width', clientheight);
-		myVideo.setAttribute('height', clientwidth);
-		jmuxer = new JMuxer(JMuxerOptions);
+		SDK_CONFIG.myVideo.setAttribute('width', clientheight);
+		SDK_CONFIG.myVideo.setAttribute('height', clientwidth);
+		SDK_CONFIG.jmuxer = new JMuxer(SDK_CONFIG.JMuxerOptions);
+		SDK_CONFIG.aacPlayer = new PCMPlayer({
+			encoding: '16bitInt',
+			channels: 2,
+			sampleRate: 44100,
+			flushingTime: 22,
+			debug: false
+		})
     },
 	// 切换清晰度
 	switchSharpness: (data) => {
@@ -123,62 +94,67 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			data = 3;
 		}
 		var buffer = makeSharpness(data);
-		ws && ws.send(buffer);
+		SDK_CONFIG.ws && SDK_CONFIG.ws.send(buffer);
 	},
 	// 账号透传
 	setSdkToken: (uid, token) => {
 		var buffer = ExexuteSetAccountTransparent(uid, token);
-		controlWs.send(buffer);
+		SDK_CONFIG.controlWs.send(buffer);
 	},
 	// 调起支付页面
 	switchPay: () => {},
 	// 关闭推流
 	closeWs: () => {
-		ws.close()
-		disconnect = true
-		ws.onclose = undefined
-		ws = null;
-		controlWs = null;
-		clearInterval(outsetInterval);
-		jmuxer.destroy();
-		console.log("关闭推流", ws.readyState);
+		SDK_CONFIG.ws.close()
+		SDK_CONFIG.disconnect = true
+		SDK_CONFIG.ws.onclose = undefined
+		SDK_CONFIG.ws = null;
+		SDK_CONFIG.controlWs = null;
+		clearInterval(SDK_CONFIG.outsetInterval);
+		SDK_CONFIG.jmuxer.destroy();
+
+		SDK_CONFIG.jmuxer = null;
+		SDK_CONFIG.aacPlayer = null;
+		SDK_CONFIG.myVideo.pause();
+		console.log("关闭推流", SDK_CONFIG.ws.readyState);
 		// 云游戏推流关闭
 		bounceFun(NSUInteger.GameEventConnectBeClose);
 	},
 	// 开始试玩
 	playWs: () => {
-		if (jmuxer != undefined) jmuxer.destroy();
-		jmuxer = new JMuxer(JMuxerOptions);
-		isWaitSps = true;
-		myVideo.play();
+		if (SDK_CONFIG.jmuxer != undefined) SDK_CONFIG.jmuxer.destroy();
+		SDK_CONFIG.jmuxer = new JMuxer(SDK_CONFIG.JMuxerOptions);
+		SDK_CONFIG.isWaitSps = true;
+		SDK_CONFIG.myVideo.play();
 
 		// 鼠标点击重置停留的时间
-		oldTime = new Date().getTime();
+		SDK_CONFIG.oldTime = new Date().getTime();
 		// 连接
 		CLOUD_GAME_SDK.doConnect()
 	},
 	// 自定义设置卡信息
 	setCardInfo: (options) => {
-		socketURL = options.socketURL;
-		socketExtranetURL = options.socketExtranetURL;
-		token = options.token;
+		SDK_CONFIG.socketURL = options.socketURL;
+		SDK_CONFIG.socketExtranetURL = options.socketExtranetURL;
+		SDK_CONFIG.token = options.token;
+		SDK_CONFIG.sn = options.sn;
 	},
 	// 开启倒计时
 	outTime: () => {
 		// 更新未进行操作的当前时间
-		newTime = new Date().getTime();
+		SDK_CONFIG.newTime = new Date().getTime();
 		// console.log('打印最后一次操作的时间', newTime - oldTime, outTime)
 		// 判断是否超时不操作
-		if (newTime - oldTime > outTime) {
+		if (SDK_CONFIG.newTime - SDK_CONFIG.oldTime > SDK_CONFIG.outTime) {
 			console.log("时间到，退出登录");
 			CLOUD_GAME_SDK.closeWs()
 		}
 	},
 	// 获取token 'appKey', 'id'
 	getSdkToken: (appKey, id, baseUrl) => {
-		const httpsUrl = typeof baseUrl != 'undefined' && baseUrl ? baseUrl : apiURL;
+		const httpsUrl = typeof baseUrl != 'undefined' && baseUrl ? baseUrl : SDK_CONFIG.apiURL;
 		$.ajax({
-			url: httpsUrl + getSdkTokenURL,
+			url: httpsUrl + SDK_CONFIG.getSdkTokenURL,
 			data: JSON.stringify({appKey, id}),
 			type: 'post',
 			dataType: 'json',
@@ -198,7 +174,7 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 	},
 	// 排队拿卡
 	lineup: (token, id, baseUrl) => {
-		const httpsUrl = typeof baseUrl != 'undefined' && baseUrl ? baseUrl : apiURL;
+		const httpsUrl = typeof baseUrl != 'undefined' && baseUrl ? baseUrl : SDK_CONFIG.apiURL;
 		// 状态打点
 		bounceFun(NSUInteger.GameEventInterfaceGetGameLineupMsg);
 		const dataType = {
@@ -209,25 +185,55 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			'useType': 0,
 		};
 		$.ajax({
-			url: httpsUrl + lineUpURL,
+			url: httpsUrl + SDK_CONFIG.lineUpURL,
 			data: dataType,
 			type: 'get',
 			dataType: 'json',
 			success: function(res) {
-				console.log('获取sdktoken', res)
+				console.log('获取拿卡信息', res)
 				if (res.code === 200) {
 					var resData = res.data;
 					if (resData.remainingTime) {
 						extraData.remainingTimeData = resData;
+						Object.assign({}, CARD_INFO, {
+							appId: "",
+							cardId: -1,
+							cardToken: "",
+							extranetIp: "",
+							extranetPort: -1,
+							id: -1,
+							internetHttp: "",
+							internetHttps: "",
+							intranetIp: "",
+							noRestart: "",
+							resourceId: -1,
+							sn: "",
+							socketExtranetPort: -1,
+							userCardId: "",
+							userTime: 0,
+							version: "",
+						});
+
+						// 5秒轮询排队
+						if (!SDK_CONFIG.queueGetCard) {
+							SDK_CONFIG.queueGetCard = setInterval(() => {
+								CLOUD_GAME_SDK.lineup(token, id, baseUrl)
+							}, SDK_CONFIG.lineupTime);
+						}
 					} else {
 						extraData.remainingTimeData = undefined;
+						clearInterval(SDK_CONFIG.queueGetCard);
+						SDK_CONFIG.queueGetCard = null;
 						// 拿到安卓卡
 						bounceFun(NSUInteger.GameEventGetCardOkMsg);
-						let data = res.data
-						socketURL = 'ws://' + data.extranetIp + ':' + data.extranetPort
-						socketExtranetURL = 'ws://' + data.extranetIp + ':' + data.socketExtranetPort
-						sn = data.sn
-						token = data.cardToken
+						SDK_CONFIG.socketURL = 'ws://' + resData.extranetIp + ':' + resData.extranetPort
+						SDK_CONFIG.socketExtranetURL = 'ws://' + resData.extranetIp + ':' + resData.socketExtranetPort
+						SDK_CONFIG.sn = resData.sn
+						SDK_CONFIG.token = resData.cardToken
+
+						for (let key in resData) {
+							CARD_INFO[key] = resData[key]
+						}
 					}
 				} else {
 					// 排队接口返回错误
@@ -252,24 +258,45 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		// }, false);
 	},
 	visibilityCallBack: () => {
-
+		if (document.visibilityState == 'visible') {
+			SDK_CONFIG.isEntered = true
+		} else {
+			SDK_CONFIG.isEntered = false
+		}
 	},
 	doConnect: () => {
-		if (undefined != ws) {
+		if (undefined != SDK_CONFIG.ws) {
 			console.log('websocket已经有连接了');
 			return;
 		}
-		console.log('执行doconnect', socket);
-		ws = new WebSocket(socketURL);
-		controlWs = new WebSocket(socketExtranetURL);
-		ws.binaryType = 'arraybuffer';
-		controlWs.binaryType = 'arraybuffer';
-		curTime = new Date().getTime();
+		console.log('执行doconnect', SDK_CONFIG.ws);
+		SDK_CONFIG.ws = new WebSocket(SDK_CONFIG.socketURL);
+		SDK_CONFIG.controlWs = new WebSocket(SDK_CONFIG.socketExtranetURL);
+		SDK_CONFIG.ws.binaryType = 'arraybuffer';
+		SDK_CONFIG.controlWs.binaryType = 'arraybuffer';
+		SDK_CONFIG.curTime = new Date().getTime();
+
+		let lastRequestTime = 0;
+		SDK_CONFIG.pingTimer = setInterval(() => {
+			// 加一个发送：处理 video 标签播放机制
+			let interval = new Date().getTime() - lastRequestTime;
+			if (interval >= 60*1000) {
+				lastRequestTime = new Date().getTime()
+				SDK_CONFIG.ws.send(RequestIFrame(SDK_CONFIG.sn))
+				console.log("60S 主动请求I帧");
+			}
+
+			if (SDK_CONFIG.ws.readyState === 1) {
+				SDK_CONFIG.ws.send('ping')
+			} else {
+				// this.returnBack()
+			}
+		}, 2000)
 	
 		// 音频流关闭时进行重连操作
-		ws.onclose = function(e) {
+		SDK_CONFIG.ws.onclose = function(e) {
 			console.log('打印关闭信息', e)
-			if (e.currentTarget == ws) {
+			if (e.currentTarget == SDK_CONFIG.ws) {
 				console.log('同一个ws, 发生断网, 应该重连');
 				CLOUD_GAME_SDK.doConnect();
 			} else {
@@ -278,23 +305,25 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		}
 	
 		// 指令流====================================
-		controlWs.addEventListener('open', function(event) {
-			var buffer = ExexuteSetPhoneSize('1920', '1080');
-			var bufferSendBitRate = ExexuteSendBitRate('1');
-			var inputMethodBuffer = JSON.stringify({
-				"type": "InputMethod",
-				"data": {
-					"type": 2 // 1即玩云键盘 2试玩讯飞键盘
-				}
-			});
-			controlWs.send(inputMethodBuffer)
-			controlWs.send(bufferSendBitRate);
-			controlWs.send(buffer);
-			console.log("控制端口已经打开");
-			// 信令通道链接成功
-			bounceFun(NSUInteger.GameEventWebSocketOkMsg);
+		SDK_CONFIG.controlWs.addEventListener('open', function(event) {
+			if (Number(CARD_INFO.noRestart) !== 1) {
+				var buffer = ExexuteSetPhoneSize('1920', '1080');
+				var bufferSendBitRate = ExexuteSendBitRate('1');
+				var inputMethodBuffer = JSON.stringify({
+					"type": "InputMethod",
+					"data": {
+						"type": 2 // 1即玩云键盘 2试玩讯飞键盘
+					}
+				});
+				SDK_CONFIG.controlWs.send(inputMethodBuffer)
+				SDK_CONFIG.controlWs.send(bufferSendBitRate);
+				SDK_CONFIG.controlWs.send(buffer);
+				console.log("控制端口已经打开");
+				// 信令通道链接成功
+				bounceFun(NSUInteger.GameEventWebSocketOkMsg);
+			}
 		});
-		controlWs.addEventListener('message', function(event) {
+		SDK_CONFIG.controlWs.addEventListener('message', function(event) {
 			const controlData = JSON.parse(event.data)
 			extraData.payData = controlData
 			if (extraData.aiquData.event === 'aiqu_game_invoke_pay') {
@@ -305,57 +334,63 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		});
 	
 		// 音频流====================================
-		ws.addEventListener('open', function(event) {
-			var verifyBuffer = VerifyCode(sn, token);
+		SDK_CONFIG.ws.addEventListener('open', function(event) {
+			var verifyBuffer = VerifyCode(SDK_CONFIG.sn, SDK_CONFIG.token);
 			console.log("鉴权报文:" + PrintArry(verifyBuffer));
-			ws.send(verifyBuffer);
+			SDK_CONFIG.ws.send(verifyBuffer);
 			/* 定时器  判断每5秒是否长时间未进行页面操作 */
-			outsetInterval = setInterval(outTime, 5000);
+			SDK_CONFIG.outsetInterval = setInterval(SDK_CONFIG.outTime, 5000);
 			// 安卓卡链接成功
 			bounceFun(NSUInteger.GameEventCardConnectOkMsg);
 		});
-		ws.addEventListener('error', function(event) {
+		SDK_CONFIG.ws.addEventListener('error', function(event) {
 			console.log("连接失败");
 			// 云游戏重连失败
 			bounceFun(NSUInteger.GameEventReConnectFailMsg);
 		});
-		ws.addEventListener('message', function(event) {
+		SDK_CONFIG.ws.addEventListener('message', function(event) {
 			// JAVA服务器转发	  
 			var data = CLOUD_GAME_SDK.ParseProto(event.data); 
+			var input = new Uint8Array(event.data);
 			// 喂音频
 			if (data.audio != null) {
-				//decodeAAC(data.audio);
+				if (input[0] == 0xff) {
+					if (!SDK_CONFIG.lastTime) {
+						SDK_CONFIG.lastTime = new Date().getTime()
+					}
+					const cost = new Date().getTime() - SDK_CONFIG.lastTime
+					SDK_CONFIG.lastTime = new Date().getTime()
+					SDK_CONFIG.aacQueue.push(input)
+					if (SDK_CONFIG.aacQueue.length > 1) {
+						document.visibilityState == 'visible' && CLOUD_GAME_SDK.decodeAAC(SDK_CONFIG.aacQueue.shift())
+					}
+					if (cost < 22) {
+						// SDK_CONFIG.sleep(22 - cost)
+					}
+				}
 			}
 			if (data.frameType != undefined && data.frameType != 1 && data.frameType != 6) {
 				if (data.frameType == 7) {
 					let info = spsParser(data.video);
 					// 视频分辨率与当前的不一致时
-					if (info && info.width != myVideo.videoWidth && info.height != myVideo.videoHeight) {
-						if (myVideo.videoWidth > 0) {
-							if (jmuxer != undefined) jmuxer.destroy();
-							jmuxer = new JMuxer(JMuxerOptions);
+					if (info && info.width != SDK_CONFIG.myVideo.videoWidth && info.height != SDK_CONFIG.myVideo.videoHeight) {
+						if (SDK_CONFIG.myVideo.videoWidth > 0) {
+							if (SDK_CONFIG.jmuxer != undefined) SDK_CONFIG.jmuxer.destroy();
+							SDK_CONFIG.jmuxer = new JMuxer(SDK_CONFIG.JMuxerOptions);
 						}
 					}
 				}
 				// let cost = new Date().getTime() - curTime;
 			}
-			console.log("data.frameType", data.frameType)
+			// console.log("data.frameType", data.frameType)
 			// 喂视频
 			if (data.video != null) {
-				if (data.frameType == 0x05 && isVisuable) {
-					isFeed = true;
+				if (data.frameType == 0x07 || data.frameType == 0x08 || data.frameType == 0x05) {
+					console.log('等待I帧成功')
+					SDK_CONFIG.isEntered = true
 				}
-				if (data.frameType == 7 || data.frameType == 8) {
-					isFeed = true;
-					isWaitSps = false;
-				}
-				if (isFeed) {
-					if (!isWaitSps) {
-						console.log('-------------8888888888------------')
-						jmuxer.feed(data);
-					}
-				} else {
-					console.log("不喂视频:" + data.frameType);
+				if (SDK_CONFIG.isEntered) {
+					SDK_CONFIG.jmuxer.feed(data)
 				}
 			}
 		});
@@ -365,22 +400,22 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 	},
 	// 推流后的默认配置
 	connectAfterInit: () => {
-		flag = setInterval(function() {
-			if (ws != undefined) {
-				ws.send("ping");
-			}
-		}, 2000);
+		// SDK_CONFIG.flag = setInterval(function() {
+		// 	if (SDK_CONFIG.ws != undefined) {
+		// 		SDK_CONFIG.ws.send("ping");
+		// 	}
+		// }, 2000);
 		
-		myVideo.onplay = function() {
-			myVideo.controls = false;
+		SDK_CONFIG.myVideo.onplay = function() {
+			SDK_CONFIG.myVideo.controls = false;
 		}
 		
-		myVideo.oncontextmenu = function(event) {
+		SDK_CONFIG.myVideo.oncontextmenu = function(event) {
 			var buffer = ExexuteKeyDown(4);
-			ws.send(buffer);
+			SDK_CONFIG.ws.send(buffer);
 		}
 
-		myVideo.addEventListener('resize', (e) => {
+		SDK_CONFIG.myVideo.addEventListener('resize', (e) => {
 			// document.querySelector('[data-content="resolution"]').textContent = [
 			// 	e.target.videoWidth,
 			// 	e.target.videoHeight
@@ -389,19 +424,14 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 	
 		document.addEventListener("visibilitychange", CLOUD_GAME_SDK.visibilityCallBack);
 	
-		myVideo.addEventListener('pause', function() {
+		SDK_CONFIG.myVideo.addEventListener('pause', function() {
 			//console.log("视频播放暂停");
-			isFeed = false;
+			SDK_CONFIG.isFeed = false;
 		});
 		
 		document.onkeydown = function(event) {
-			console.log('===========我打开键盘了', event.keyCode)
-			// var buffer = ExexuteKeyDown(event.keyCode);
-			// ws.send(buffer);
-			// controlWs.send(buffer);
-			let isMac =
-				navigator.userAgent.toLowerCase().indexOf('macintosh') >= 0
-		
+			// console.log('===========我打开键盘了', event.keyCode)
+			let isMac = navigator.userAgent.toLowerCase().indexOf('macintosh') >= 0
 			let keyCode: number = -1
 			if (
 				(event.ctrlKey || (isMac && event.composed)) &&
@@ -439,28 +469,29 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			) {
 				keyCode = keycodeMode[event.keyCode]
 			}
-			if (keyCode) {
+			if (keyCode !== -1) {
+				console.log('===========我打开键盘了', keyCode)
 				var buffer = ExexuteKeyDown(keyCode)
-				ws.send(buffer);
-				controlWs.send(buffer);
+				SDK_CONFIG.ws.send(buffer);
+				SDK_CONFIG.controlWs.send(buffer);
 			}
 		};
-		myContainer.onkeydown = function(event) {
-			// myVideo.controls = false;
+		// SDK_CONFIG.myContainer.onkeydown = function(event) {
+		// 	// SDK_CONFIG.myVideo.controls = false;
+		// 	console.log('===========我打开键盘了')
+		// 	var buffer = ExexuteKeyDown(event.keyCode);
+		// 	SDK_CONFIG.ws.send(buffer);
+		// 	SDK_CONFIG.controlWs.send(buffer);
+		// }
+		SDK_CONFIG.myVideo.onkeydown = function(event) {
 			console.log('===========我打开键盘了')
-			var buffer = ExexuteKeyDown(event.keyCode);
-			ws.send(buffer);
-			controlWs.send(buffer);
-		}
-		myVideo.onkeydown = function(event) {
-			console.log('===========我打开键盘了')
-			var buffer = ExexuteKeyDown(event.keyCode);
-			ws.send(buffer);
-			controlWs.send(buffer);
+			var buffer = ExexuteKeyDown(event.keyCode, SDK_CONFIG.sn);
+			// SDK_CONFIG.ws.send(buffer);
+			// SDK_CONFIG.controlWs.send(buffer);
 		}
 	},
 	touchClick: (event, type) => {
-		oldTime = new Date().getTime(); // 鼠标点击重置停留的时间
+		SDK_CONFIG.oldTime = new Date().getTime(); // 鼠标点击重置停留的时间
 		var canvasWidth = Number(window.innerWidth);
 		var canvasHeight = Number(window.innerHeight);
 		const onClickHandle = {
@@ -476,12 +507,12 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			return ele.identifier === touches[i].identifier
 			})
 			// 横屏游戏
-			if (isLandscape) {
+			if (SDK_CONFIG.isLandscape) {
 				// 根据游戏的分辨率 设置
-				let posX = (videoHeight * 1.0 * touches[i].clientY) / canvasHeight
-				let posY = (videoWidth * 1.0 * (canvasWidth - touches[i].clientX)) / canvasWidth
+				let posX = (SDK_CONFIG.videoHeight * 1.0 * touches[i].clientY) / canvasHeight
+				let posY = (SDK_CONFIG.videoWidth * 1.0 * (canvasWidth - touches[i].clientX)) / canvasWidth
 				// // 重力感应
-				// if (this.isLandscape) {
+				// if (this.SDK_CONFIG.isLandscape) {
 				//   // 根据游戏的分辨率 设置
 				//   posX = (touches[i].clientX * window.videoHeight * 1.0) / this.cw
 				//   posY = (touches[i].clientY * window.videoWidth * 1.0) / this.ch
@@ -493,15 +524,15 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 					ongoingTouches,
 					touches[i].identifier
 				)
-				controlWs.send(buffer)
+				SDK_CONFIG.controlWs.send(buffer)
 			} else {
 			// 竖屏游戏
 			let touches = event.changedTouches
 			// 根据游戏的分辨率 设置
-			let posX = (touches[i].clientX * videoWidth * 1.0) / canvasWidth
-			let posY = (touches[i].clientY * videoHeight * 1.0) / canvasHeight
+			let posX = (touches[i].clientX * SDK_CONFIG.videoWidth * 1.0) / canvasWidth
+			let posY = (touches[i].clientY * SDK_CONFIG.videoHeight * 1.0) / canvasHeight
 			// // 重力感应
-			// if (this.isLandscape) {
+			// if (this.SDK_CONFIG.isLandscape) {
 			//   // 根据游戏的分辨率 设置
 			//   posX = (touches.clientX * window.videoHeight * 1.0) / this.canvasWidth;
 			//   posY = (touches.clientY * window.videoWidth * 1.0) / this.canvasHeight;
@@ -513,25 +544,25 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 				ongoingTouches,
 				touches[i].identifier
 			)
-			controlWs.send(buffer)
+			SDK_CONFIG.controlWs.send(buffer)
 			}
 			if (idx < 0) {
-			ongoingTouches.push(touches[i])
+				ongoingTouches.push(touches[i])
 			}
 		}
 	},
 	doSomeConfig: () => {
-		ws.send(ConfigChannel(sn, "chaohang"));
+		SDK_CONFIG.ws.send(ConfigChannel(SDK_CONFIG.sn, "chaohang"));
 		var checkBuffer = GetScreenState();
-		ws.send(checkBuffer);
+		SDK_CONFIG.ws.send(checkBuffer);
 	},
 	convertPosDefaultLandspace: (x, y) => {
 		let posX, posY;
-		if (!isLandscape) {
+		if (!SDK_CONFIG.isLandscape) {
 			// xx
 		} else {
-			posX = (x * videoWidth * 1.0) / myVideo.clientWidth;
-			posY = (y * videoHeight * 1.0) / myVideo.clientHeight;
+			posX = (x * SDK_CONFIG.videoWidth * 1.0) / SDK_CONFIG.myVideo.clientWidth;
+			posY = (y * SDK_CONFIG.videoHeight * 1.0) / SDK_CONFIG.myVideo.clientHeight;
 		}
 		return {
 			x: posX,
@@ -541,12 +572,12 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 	convertPos: (x, y) => {
 		var posX, posY; //500, 800
 		// 如果是横屏
-		if (isLandscape) {
-			posX = (x / myVideo.clientWidth) * videoWidth * 1.0
-			posY = (y / myVideo.clientHeight) * videoHeight * 1.0
+		if (SDK_CONFIG.isLandscape) {
+			posX = (x / SDK_CONFIG.myVideo.clientWidth) * SDK_CONFIG.videoWidth * 1.0
+			posY = (y / SDK_CONFIG.myVideo.clientHeight) * SDK_CONFIG.videoHeight * 1.0
 		} else {
-			posX = (1 - y / myVideo.clientHeight) * videoHeight * 1.0
-			posY = (x / myVideo.clientWidth) * videoWidth * 1.0
+			posX = (1 - y / SDK_CONFIG.myVideo.clientHeight) * SDK_CONFIG.videoHeight * 1.0
+			posY = (x / SDK_CONFIG.myVideo.clientWidth) * SDK_CONFIG.videoWidth * 1.0
 		}
 		return {
 			x: posX,
@@ -554,10 +585,10 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		};
 	},
 	createNewDecoder: () => {
-		if (jmuxer != undefined) jmuxer.destroy();
-		jmuxer = new JMuxer(JMuxerOptions);
-		myVideo.play();
-		isWaitSps = true;
+		if (SDK_CONFIG.jmuxer != undefined) SDK_CONFIG.jmuxer.destroy();
+		SDK_CONFIG.jmuxer = new JMuxer(SDK_CONFIG.JMuxerOptions);
+		SDK_CONFIG.myVideo.play();
+		SDK_CONFIG.isWaitSps = true;
 	},
 	ParseProto: (data) => {
 		var input = new Uint8Array(data),
@@ -596,10 +627,10 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 					if (state == 1) {
 						console.log("安卓卡此时竖屏");
 						// 竖屏处理
-						isLandscape = false;
+						SDK_CONFIG.isLandscape = false;
 					} else {
 						console.log("安卓卡此时横屏");
-						isLandscape = true;
+						SDK_CONFIG.isLandscape = true;
 						// 横屏处理
 					}
 				}
@@ -628,10 +659,13 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			for (let i = 0; i < pcmLen; i++) {
 				pcmData[i] = Module.HEAPU8[(retPtr) + i]
 			}
+			if (pcmData.length) {
+				SDK_CONFIG.aacPlayer.feed(pcmData)
+			}
 		} else {
-			console.log("%d帧 aac 解码失败, %d", decodeCount, pcmLen);
+			console.log("%d帧 aac 解码失败, %d", SDK_CONFIG.decodeCount, pcmLen);
 		}
-		decodeCount++;
+		SDK_CONFIG.decodeCount++;
 		Module._free(inputPtr);
 		Module._free(retPtr);
 	},

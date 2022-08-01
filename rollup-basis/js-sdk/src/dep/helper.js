@@ -252,7 +252,7 @@ export const GetScreenState = () => {
 export const VerifyCode = (sn, code) => {
 	var len = code.length + 1;
 	// "utf-8"
-	var codeBuffer = new TextEncoder().encode(code); //获取字符串ascii码
+	var codeBuffer = new TextEncoder("utf-8").encode(code); //获取字符串ascii码
 	var buffer = new Uint8Array(len);
 	buffer[0] = 0x04;
 	for (let i = 0; i < codeBuffer.length; i++) {
@@ -274,8 +274,8 @@ export const CheckVerifyCode = (data) => {
 
 //通道配置
 export const ConfigChannel = (sn, channelName) => {
-	var chanelBuffer = new TextEncoder().encode(channelName);
-	var outPut: number[] = [];
+	var chanelBuffer = new TextEncoder("utf-8").encode(channelName);
+	var outPut = [];
 	outPut.push(0x07);
 
 	for (let i = 0; i < chanelBuffer.length; i++) {
@@ -296,7 +296,7 @@ export const makeMultiLogin = (sn, jsonData) => {
 		data: jsonData,
 	};
 	var jsonStr = JSON.stringify(jsonObj);
-	var outPut = new TextEncoder().encode(jsonStr);
+	var outPut = new TextEncoder("utf-8").encode(jsonStr);
 	return makeFrameExtend(sn, 0x0D, outPut);
 }
 
@@ -308,7 +308,7 @@ export const makeStatistics = (sn, jsonData) => {
 	};
 
 	var jsonStr = JSON.stringify(jsonObj);
-	var outPut = new TextEncoder().encode(jsonStr);
+	var outPut = new TextEncoder("utf-8").encode(jsonStr);
 	return makeFrameExtend(sn, 0x0D, outPut);
 }
 
@@ -316,7 +316,7 @@ export const makeStatistics = (sn, jsonData) => {
 export const checkMultiLoginInfo = (input) => {
 	var dataLen = input.length - 26; //得到json 长度
 	var jsonHex = input.slice(24, 24 + dataLen); //截取json hex二进制数据		
-	var jsonStr = new TextDecoder().decode(jsonHex);
+	var jsonStr = new TextDecoder("utf-8").decode(jsonHex);
 	console.log("取得json 字符串:" + jsonStr);
 	var jsonObj = JSON.parse(jsonStr);
 	return jsonObj;

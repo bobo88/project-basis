@@ -558,6 +558,5 @@ noExitRuntime = true;
 run();
 
 // 导出Module
-export const AAC_MODULE = {
-    Module
-};
+console.log(99999999, Module, Module._malloc)
+export let Module = Module;

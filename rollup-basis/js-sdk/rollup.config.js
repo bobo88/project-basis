@@ -23,7 +23,12 @@ export default {
     },
     plugins: [
         clear({targets: ['dist']}), //清除dist目录
-        // uglify(),
+        uglify({
+            compress:{
+                drop_debugger:true,
+                drop_console:true
+            }
+        }),
         resolve(),
         ts({
             useTsconfigDeclarationDir: true
