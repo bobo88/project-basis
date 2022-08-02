@@ -111,6 +111,7 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		SDK_CONFIG.ws = null;
 		SDK_CONFIG.controlWs = null;
 		clearInterval(SDK_CONFIG.outsetInterval);
+		clearInterval(SDK_CONFIG.pingTimer);
 		SDK_CONFIG.jmuxer.destroy();
 
 		SDK_CONFIG.jmuxer = null;
@@ -325,7 +326,7 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		});
 		SDK_CONFIG.controlWs.addEventListener('message', function(event) {
 			const controlData = JSON.parse(event.data)
-			extraData.payData = controlData
+			extraData.aiquData = controlData
 			if (extraData.aiquData.event === 'aiqu_game_invoke_pay') {
 				console.log(588, '支付被点击了')
 				// 云游戏支付透传

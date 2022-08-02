@@ -460,12 +460,12 @@ function doConnect() {
 	controlWs.addEventListener('message', function(event) {
 		const controlData = JSON.parse(event.data)
 		PayData = controlData
-		if (aiquData.event === 'aiqu_game_invoke_pay') {
+		if (PayData.event === 'aiqu_game_invoke_pay') {
 			console.log(588, '支付被点击了')
 			// 云游戏支付透传
 			bounceFun(NSUInteger.GameEventWebSocketPay);
 		}
-		$('#consoleText').text(JSON.stringify(aiquData))
+		$('#consoleText').text(JSON.stringify(PayData))
 	});
 
 	// 音频流====================================
