@@ -17,3 +17,4 @@ export declare const CARD_INFO: {
     userTime: number;
     version: string;
 };
+export declare const SOFT_SDK_CONFIG: ConfigType;

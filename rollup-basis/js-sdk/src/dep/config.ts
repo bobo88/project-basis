@@ -1,9 +1,12 @@
 // SDK配置集合：相关变量
 export const SDK_CONFIG: ConfigType = {
+	containerNode: '',
+	videoNode: '',
 	ws: null,
 	socket: null,
 	controlWs: null,
 	jmuxer: null,
+	webglPlayer: null,
 	aacPlayer: null,
 	myVideo: null,
 	myContainer: null,
@@ -21,6 +24,7 @@ export const SDK_CONFIG: ConfigType = {
 	isPay: false,
     // 是否横屏
 	isLandscape: false,
+	landscapeIsSeted: false,
 	isEntered: false,
     
 	videoWidth: 1080,
@@ -86,4 +90,32 @@ export const CARD_INFO = {
 	userCardId: "",
 	userTime: 0,
 	version: "",
+}
+
+export const SOFT_SDK_CONFIG: ConfigType = {
+	decodeWoker: null,
+	webSocketWorker: null,
+	golbalYuvData: null,
+
+	isFinish: false,
+	isFeed: true,
+
+	h264Queue: [],
+
+	decodeCount: 1,
+	// videoWidth: 1080,
+	// videoHeight: 1920,
+	w: 1080, // 分辨率
+	h: 1920,
+	renderCount: 0,
+	fpsCount: 0,
+	decodeSuccessCount: 0,
+	decodeCostSum: 0,
+	
+	lastTime: new Date().getTime(),
+	lastRequestTime: 0,
+
+	globalYuvPtr: undefined,
+	curFrameWidth: undefined,
+	curFrameHeight: undefined,
 }

@@ -343,3 +343,18 @@ export const RequestIFrame = () => {
 	var outPut = new Uint8Array([0x20]);
 	return makeFrameExtend(sn, 6, outPut);
 }
+
+// 关闭连接事件
+export function ExexuteCloseServer(sn) {
+    const jsonObj = { 'data': { 'x': '0', 'y': '0' }, 'type': 'closeServer' }
+    const json = JSON.stringify(jsonObj)
+    return makeFrame(sn, 0, json)
+}
+
+export function fpsSet(frameRate) {
+    let sn = "RK3923C1201900139";
+	let jsonObj = { "type": 1, "data": { "frame_rate": frameRate } };
+    let jsonStr = JSON.stringify(jsonObj);
+	let outPut = new TextEncoder("utf-8").encode(jsonStr);
+	return makeFrameExtend(sn, 0xD, outPut);
+}
