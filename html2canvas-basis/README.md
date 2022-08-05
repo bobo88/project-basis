@@ -8,3 +8,7 @@
 + 增加水印功能
 + todo
 
+### 二、第三方依赖：
++ html2canvas： 官网 -- https://html2canvas.hertzen.com/
++ xxx
+

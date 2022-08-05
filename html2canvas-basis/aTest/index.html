@@ -1,16 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="./html2canvas_sdk.js"></script>
-</head>
-<body>
-    <script>
-        console.log(3333)
-        // window.onclo
-    </script>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+   <title></title>
+
+   <script src="./html2canvas_sdk.js"></script>
+
+   <style>
+    #flexGird {
+        margin: 0 auto;
+        padding: 20px;
+        width: 700px;
+        text-align: center;
+        border: 1px solid #f60;
+        border-radius: 10px;
+    }
+    .flex_gird img {
+        width: 150px;
+        height: 150px;
+    }
+    .flex_gird_foot {
+        text-align: center;
+    }
+   </style>
+<body  class="bg_color">
+	<div id="flexGird" style="background:#fff">
+		<div class="flex_item_head">
+			<h2 style="text-align: center;">牛气冲天</h2>
+			<p>最高奖金100,000元</p>
+		</div>
+		<div class="flex_gird" >
+			<a href="javascript:void(0);">
+				<img src="icon/gag.jpg" >
+			</a>
+			<a href="javascript:void(0);">
+				<img src="icon/gag.jpg" >
+			</a>
+			<a href="javascript:void(0);">
+				<img src="icon/gag.jpg" >
+			</a>
+			<a href="javascript:void(0);">
+				<img src="icon/gag.jpg" >
+			</a>
+		</div>
+	</div>
+
+	<div class="flex_line"></div>
+
+	<div class="flex_gird_foot">
+		<div class="flex_gird_alt">
+			测试SDK
+		</div>
+		
+		<div class="flexBtn">
+			<a href="javascript:;" class="flexBtnLeft" id="btnSave">生成照片去转发</a>
+		</div>
+
+        <!-- 存储base64图片 -->
+        <p>长按图片保存到手机</p>
+	</div>
+	
+    <div id="canvas-box" style="text-align: center;"></div>
+
+<script>
+    // 获取按钮id
+    var btnSave = document.getElementById("btnSave");
+
+    var html2canvas_sdk = window.html2canvas_sdk;
+
+    // 进行canvas生成
+    btnSave.onclick = function(){
+        html2canvas_sdk.html2canvasInit({
+            from: 'flexGird',
+            to: 'canvas-box',
+            // width: 600,
+            // height: 400,
+            // x: -100,
+            // y: -100,
+            // backgroundColor: '#069',
+            download: false,
+            downloadOptions: {
+                // width: 500,
+                // height: 300,
+                // type: 'xxxx',
+                // fileName: 'Test-ABC'
+            },
+            // cb: '111'
+        });
+    };
+</script>
 </body>
 </html>

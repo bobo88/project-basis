@@ -29,12 +29,12 @@ export default {
     },
     plugins: [
         clear({targets: ['dist/html2canvas_sdk.js']}), //清除dist目录
-        // uglify({
-        //     compress:{
-        //         drop_debugger:true,
-        //         drop_console:true
-        //     }
-        // }),
+        uglify({
+            compress:{
+                drop_debugger: true,
+                drop_console: false
+            }
+        }),
         resolve({ extensions }),
         commonjs({
             include: 'node_modules/**',
