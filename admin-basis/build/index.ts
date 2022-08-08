@@ -1,5 +1,3 @@
-export default {
-    useplugins: '111',
-    useDevServer: '22',
-    useBuild: '33',
-}
+export * from './plugins';
+export * from './server';
+export * from './build';
