@@ -68,6 +68,60 @@ export default defineComponent({
                 return h(TzFormItem, { labelWidth: '0px', ...attr }, () => childItems)
             }
             const cAttrs = item.attrs || {};
+            if (Array.isArray(item.prop)) {
+                attr.prop = item.prop.find((i) => i.length === 1)?.[0]
+            } else {
+                attr.prop = item.prop;
+            }
+
+            const cSlots = () => {
+                // 驼峰转换
+                const component = (item.component || '')
+                    .replace(/-(\w)/g, (__, b) => b.toUpperCase())
+                    .replace(/^(\w){1}/, (__, b) => b.toUpperCase());
+                if (item.render) {
+                    return item.render(attrs.model)
+                }
+                if( item.slot) {
+                    return slots[item.slot]?.(ruleForm)
+                }
+
+                if(component === '') {
+                    return (
+                        <span class="text-ellipsis">
+                            {attrs.model[item.prop as string]}
+                        </span>
+                    );
+                }
+
+                let compElseAttr = {} as any;
+                if (Array.isArray(item.prop)) {
+                    item.prop.forEach((i) => {
+                        if (i.length === 1) {
+                            compElseAttr.modelValue = attrs.model[i[0]];
+                            compElseAttr['onUpdate:modelValue'] = (value: any) => {
+                                attrs.model[i[0]] = value;
+                            };
+                        } else if (i.length === 2) {
+                            compElseAttr[i[1]] = attrs.model[i[0]];
+                            compElseAttr[`onUpdate:${i[1]}`] = (value: any) => {
+                                attrs.model[i[0]] = value
+                            };
+                        }
+                    });
+                } else {
+                    compElseAttr = {
+                        modelValue: attrs.model[item.prop],
+                        'onUpdate:modelValue': (value: any) => {
+                            attrs.model[item.props as string] = value;
+                        }
+                    }
+                }
+                return h(resolveComponent(component), {
+                    ...cAttrs,
+                    ...compElseAttr
+                })
+            }
             // todo
         }
     }
