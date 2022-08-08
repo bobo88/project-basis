@@ -34,8 +34,8 @@ export {
 
 // 基于【html2canvas】进行二次封装
 export const html2canvasInit = (options) => {
-	// 1. 【options.cb】 配置时，appendTo 无效 ----- 自定义回调函数 优先级高于 默认回调函数
-	// 2. 【options.download】配置时，cb 无效，appendTo 亦无效 ----- 一键下载截图
+	// 1. 【options.cb】 配置时，to 无效 ----- 自定义回调函数 优先级高于 默认回调函数
+	// 2. 【options.toImage】配置时，cb 无效 ----- 一键下载截图
 	
 	// 参数验证
 	if (!html2canvasInitValidate(options)) {
@@ -53,15 +53,24 @@ export const html2canvasInit = (options) => {
     };
 	options.cb && (cb = options.cb);
 
-	if (options.download && options.downloadOptions) {
-		let { width, height, type, fileName } = options.downloadOptions;
+	// toImage: true,
+	// download: true,
+	if (options.toImage && options.toImageOptions) {
+		let { width, height, type, fileName, download } = options.toImageOptions;
 		width = width || options.width || boxWidth;
 		height = height || options.height || boxHeight;
 		type = type || 'png';
 		fileName = fileName || ('download-' + new Date().getTime());
-		// 将canvas转为图片并从网页中下载
+		// 将canvas转为图片
 		html2canvas(content, options).then(function(canvas) {
-			canvas2image.saveAsImage(canvas, width, height, type, fileName);
+			// 1、直接从网页中下载
+			if (download) {
+				canvas2image.saveAsImage(canvas, width, height, type, fileName);
+			} else {
+				// 2、将图片插入到页面中
+				// 调用上面封装的回调函数
+				cb(canvas2image.convertToImage(canvas, width, height, type))
+			}
 		});
 	} else {
 		html2canvas(content, options).then(cb);

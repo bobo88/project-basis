@@ -50,21 +50,21 @@ export const html2canvasInitValidate = (options: any): boolean => {
 		return false;
     }
 
-    // 如果是触发下载功能，需要验证 downloadOptions 参数是否OK
-    if (options.download) {
-        let { width, height, type } = options.downloadOptions;
+    // 如果是触发下载功能，需要验证 toImageOptions 参数是否OK
+    if (options.toImage) {
+        let { width, height, type } = options.toImageOptions;
          // 传参 width 且不是 正整数
         if (width && !isPositiveInteger(width)) {
-            console.error('【downloadOptions - width】值不符合要求! Tips: 必须是正整数。')
+            console.error('【toImageOptions - width】值不符合要求! Tips: 必须是正整数。')
             return false;
         }
         // 传参 height 且不是 正整数
         if (height && !isPositiveInteger(height)) {
-            console.error('【downloadOptions - height】值不符合要求! Tips: 必须是正整数。')
+            console.error('【toImageOptions - height】值不符合要求! Tips: 必须是正整数。')
             return false;
         }
         if (type && !isImgType(type)) {
-            console.error('【downloadOptions - type】值不符合要求! Tips: 必须是 jpg/jpeg/png/gif/bmp 中任意一个。')
+            console.error('【toImageOptions - type】值不符合要求! Tips: 必须是 jpg/jpeg/png/gif/bmp 中任意一个。')
             return false;
         }
     } else {

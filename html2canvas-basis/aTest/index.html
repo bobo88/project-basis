@@ -60,9 +60,10 @@
 
         <!-- 存储base64图片 -->
         <p>长按图片保存到手机</p>
+        <button id="saveImg" style="margin-bottom: 30px;">一键保存图片</button>
 	</div>
 	
-    <div id="canvas-box" style="text-align: center;"></div>
+    <div id="canvas-box" style="text-align: center; padding: 50px;"></div>
 
 <script>
     // 获取按钮id
@@ -80,8 +81,9 @@
             // x: -100,
             // y: -100,
             // backgroundColor: '#069',
-            download: false,
-            downloadOptions: {
+            toImage: true,
+            toImageOptions: {
+                download: false,
                 // width: 500,
                 // height: 300,
                 // type: 'xxxx',
@@ -90,6 +92,10 @@
             // cb: '111'
         });
     };
+
+    saveImg.onclick = function() {
+        
+    }
 </script>
 </body>
 </html>
