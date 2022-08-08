@@ -1,0 +1,13 @@
+{
+    "globals": {
+        "Nullable": "readonly",
+        "TzRouteRaw": "readonly",
+        "TzTable": "readonly",
+        "TzSearchForm": "readonly",
+        "TzFormCard": "readonly",
+        "TzBaseListResp": "readonly",
+        "TzResponseType": "readonly",
+        "TzArrayBufferRespType": "readonly",
+        "JSX": "readonly"
+    }
+}
