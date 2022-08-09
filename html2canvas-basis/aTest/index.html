@@ -56,11 +56,13 @@
 		
 		<div class="flexBtn">
 			<a href="javascript:;" class="flexBtnLeft" id="btnSave">生成照片去转发</a>
+            <p>
+                <a href="javascript:;" class="flexBtnLeft" id="saveImg">一键保存图片</a>
+            </p>
 		</div>
 
         <!-- 存储base64图片 -->
         <p>长按图片保存到手机</p>
-        <button id="saveImg" style="margin-bottom: 30px;">一键保存图片</button>
 	</div>
 	
     <div id="canvas-box" style="text-align: center; padding: 50px;"></div>
@@ -94,7 +96,24 @@
     };
 
     saveImg.onclick = function() {
-        
+        html2canvas_sdk.html2canvasInit({
+            from: 'flexGird',
+            to: 'canvas-box',
+            // width: 600,
+            // height: 400,
+            // x: -100,
+            // y: -100,
+            // backgroundColor: '#069',
+            toImage: true,
+            toImageOptions: {
+                download: true,
+                // width: 500,
+                // height: 300,
+                // type: 'xxxx',
+                // fileName: 'Test-ABC'
+            },
+            // cb: '111'
+        });
     }
 </script>
 </body>
