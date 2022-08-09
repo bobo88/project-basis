@@ -120,10 +120,61 @@ export default defineComponent({
                 return h(resolveComponent(component), {
                     ...cAttrs,
                     ...compElseAttr
-                })
-            }
+                });
+            };
+
+            return h(resolveComponent('TzFormItem'), { ...attr }, cSlots)
             // todo
-        }
+        };
+
+        const colNum = computed(() => {
+            const w = appStore.innerWidth;
+            let col = 0;
+            if (w < 500) {
+                col = 1;
+            } else if (w < 900) {
+                col = 2;
+            } else if (w < 1300) {
+                col = 3;
+            } else {
+                col = 4;
+            }
+            return col;
+        });
+
+        const methods = {};
+        [
+            'validate',
+            'validateField',
+            'scrollToField',
+            'resetFields',
+            'clearValidate',
+        ].forEach((key) => {
+            methods[key] = (...rest: any[]) => compRef.value?.[key](...rest)
+        });
+        expose({...methods});
+
+        return () => 
+            h (
+                TzForm,
+                {
+                    labelWidth: '110px',
+                    ...attrs,
+                    class: `card-form tz-col-${props.col || colNum.value} ${
+                        attrs.class || ''
+                    }`,
+                    ref: compRef,
+                },
+                props.config.length
+                    ? () =>
+                        props.config.map((item) => {
+                            return renderFormItem(item)
+                        })
+                    : slots.default && slots.default()
+            )
     }
-})
+});
 </script>
+<style lang="scss">
+    
+</style>
