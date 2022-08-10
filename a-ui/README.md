@@ -1,5 +1,5 @@
 ## `Vue3组件库`
-*<font color="#FF6600" >Tips：Vue3组件库</font>*  
+*<font color="#FF6600" >Tips：Vue3组件库 / menorepo(单仓库 多项目) / pnpm</font>*  
 
 ### 一、项目基本介绍：
 
