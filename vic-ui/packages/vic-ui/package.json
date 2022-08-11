@@ -2,9 +2,9 @@
   "name": "vic-ui",
   "version": "0.0.9",
   "description": "all components are settled here",
-  "main": "lib/index.js",
-  "module": "es/index.mjs",
-  "types": "es/index.d.ts",
+  "main": "lib/vic-ui/index.js",
+  "module": "es/vic-ui/index.mjs",
+  "types": "es/vic-ui/index.d.ts",
   "scripts": {
     "build": "vite build"
   },
@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "typings": "lib/index.d.ts",
+  "typings": "lib/vic-ui/index.d.ts",
   "dependencies": {
     "@vic-ui/components": "workspace:^0.0.1",
     "@vic-ui/constants": "workspace:^0.0.1",
