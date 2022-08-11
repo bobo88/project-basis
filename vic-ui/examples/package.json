@@ -9,8 +9,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
-  "dependencies": {
-    "vic-ui": "workspace:0.0.8"
-  }
+  "license": "MIT"
 }

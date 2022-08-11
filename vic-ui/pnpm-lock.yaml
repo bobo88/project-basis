@@ -19,10 +19,7 @@ importers:
       vue: 3.2.36
 
   examples:
-    specifiers:
-      vic-ui: workspace:0.0.8
-    dependencies:
-      vic-ui: link:../packages/vic-ui
+    specifiers: {}
 
   packages/components:
     specifiers:
