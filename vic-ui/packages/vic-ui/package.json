@@ -1,0 +1,22 @@
+{
+  "name": "vic-ui",
+  "version": "0.0.8",
+  "description": "all components are settled here",
+  "main": "index.ts",
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "typings": "lib/index.d.ts",
+  "dependencies": {
+    "@vic-ui/components": "workspace:^0.0.1",
+    "@vic-ui/constants": "workspace:^0.0.1",
+    "@vic-ui/utils": "workspace:^0.0.1"
+  }
+}

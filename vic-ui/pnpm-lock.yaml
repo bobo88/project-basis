@@ -20,18 +20,31 @@ importers:
 
   examples:
     specifiers:
-      ok-ui: workspace:^1.0.0
+      vic-ui: workspace:0.0.8
     dependencies:
-      ok-ui: link:../packages/components
+      vic-ui: link:../packages/vic-ui
 
   packages/components:
     specifiers:
-      '@ok-ui/utils': workspace:^1.0.0
+      '@vic-ui/utils': workspace:^0.0.1
     dependencies:
-      '@ok-ui/utils': link:../utils
+      '@vic-ui/utils': link:../utils
+
+  packages/constants:
+    specifiers: {}
 
   packages/utils:
     specifiers: {}
+
+  packages/vic-ui:
+    specifiers:
+      '@vic-ui/components': workspace:^0.0.1
+      '@vic-ui/constants': workspace:^0.0.1
+      '@vic-ui/utils': workspace:^0.0.1
+    dependencies:
+      '@vic-ui/components': link:../components
+      '@vic-ui/constants': link:../constants
+      '@vic-ui/utils': link:../utils
 
 packages:
 

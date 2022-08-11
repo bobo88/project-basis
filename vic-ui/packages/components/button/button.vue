@@ -1,3 +1,3 @@
 <template>
-    <button>测试按钮</button>
+    <button>测试按钮 Hello</button>
 </template>

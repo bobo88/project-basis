@@ -20,13 +20,13 @@ importers:
 
   examples:
     specifiers:
-      ok-ui: workspace:^1.0.0
+      ok-ui: workspace:^1.0.6
     dependencies:
       ok-ui: link:../packages/components
 
   packages/components:
     specifiers:
-      '@ok-ui/utils': workspace:^1.0.0
+      '@ok-ui/utils': workspace:^1.0.1
     dependencies:
       '@ok-ui/utils': link:../utils
 
