@@ -1,6 +1,6 @@
 {
   "name": "@vic-ui/components",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "all components are settled here",
   "main": "index.ts",
   "module": "index.ts",
