@@ -2,7 +2,9 @@
   "name": "vic-ui",
   "version": "0.0.8",
   "description": "all components are settled here",
-  "main": "index.ts",
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "types": "es/index.d.ts",
   "scripts": {
     "build": "vite build"
   },

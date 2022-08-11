@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
+const defaults = require("./defaults.js");
+const makeInstaller = require("./make-installer.js");
+const index = require("../components/button/index.js");
+const key = require("../constants/key.js");
+const install = defaults.install;
+exports.default = defaults;
+exports.makeInstaller = makeInstaller.makeInstaller;
+exports.ElButton = index.ElButton;
+exports.INSTALLED_KEY = key.INSTALLED_KEY;
+exports.install = install;
