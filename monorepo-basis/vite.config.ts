@@ -25,7 +25,7 @@ export default defineConfig(
             //让打包目录和我们目录对应
             preserveModules: true,
             //配置打包根目录
-            dir: 'dist/es',
+            dir: 'es',
             preserveModulesRoot: 'src'
           },
           {
@@ -34,7 +34,7 @@ export default defineConfig(
             //让打包目录和我们目录对应
             preserveModules: true,
             //配置打包根目录
-            dir: 'dist/lib',
+            dir: 'lib',
             preserveModulesRoot: 'src'
           }
         ]

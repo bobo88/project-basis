@@ -20,9 +20,9 @@ importers:
 
   examples:
     specifiers:
-      vic-ui: workspace:^0.1.6
+      vic-ui: 1.0.2
     dependencies:
-      vic-ui: link:../packages/vic-ui
+      vic-ui: 1.0.2
 
   packages/components:
     specifiers:
@@ -1097,6 +1097,10 @@ packages:
     resolution: {integrity: sha512-nYXQLCBkpJ8X6ltALua9dRrZDHVYxjJ1wgskNt1lH9fzGjs3tgojGSCBjmEPwkWS1y29+DrizMTW19Pr9uB2nw==}
     engines: {node: '>= 0.10'}
     dev: true
+
+  /vic-ui/1.0.2:
+    resolution: {integrity: sha512-I6TAPEYdi9eYXe9OnSwpJzpnDkq+GaQyNOZKIUMKwwR39YUTAlzoUbBTjHHKbmYbQoL2MNiL/Wrfqe9M293wQA==}
+    dev: false
 
   /vite-plugin-dts/1.4.1_vite@3.0.5:
     resolution: {integrity: sha512-jo7E4ZeheD2o48oGiI3EygPbej7ZkGFHg3GVTt7Wuo6NgzThLvuzGGuduaFpnhJOGi1piDFsu6oui/wDKIIORQ==}

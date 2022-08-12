@@ -11,6 +11,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "vic-ui": "workspace:^0.1.6"
+    "vic-ui": "1.0.2"
   }
 }
