@@ -13,7 +13,7 @@
   "license": "MIT",
   "typings": "lib/index.d.ts",
   "dependencies": {
-    "@vic-ui/components": "workspace:^0.0.1",
+    "@vic-ui/components": "workspace:^0.0.2",
     "@vic-ui/constants": "workspace:^0.0.1",
     "@vic-ui/utils": "workspace:^0.0.1"
   }
