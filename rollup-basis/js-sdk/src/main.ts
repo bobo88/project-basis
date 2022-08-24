@@ -201,6 +201,8 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		SDK_CONFIG.socketExtranetURL = options.socketExtranetURL;
 		SDK_CONFIG.token = options.token;
 		SDK_CONFIG.sn = options.sn;
+		SDK_CONFIG.baseUrl = options.baseUrl;
+		CARD_INFO.cardId = options.cardId;
 	},
 	// 开启倒计时
 	outTime: () => {
@@ -216,6 +218,10 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 	// 获取token 'appKey', 'id'
 	getSdkToken: (appKey, id, baseUrl, delayTime) => {
 		const httpsUrl = typeof baseUrl != 'undefined' && baseUrl ? baseUrl : SDK_CONFIG.apiURL;
+		// 排队拿卡时传递了 baseUrl，保存该值
+		if (typeof baseUrl != 'undefined' && baseUrl) {
+			SDK_CONFIG.baseUrl = baseUrl;
+		}
 		$.ajax({
 			url: httpsUrl + SDK_CONFIG.getSdkTokenURL,
 			data: JSON.stringify({appKey, id}),
@@ -291,6 +297,7 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 						SDK_CONFIG.queueGetCard = null;
 						// 拿到安卓卡
 						bounceFun(NSUInteger.GameEventGetCardOkMsg);
+						console.info('== 排队拿卡成功!')
 						SDK_CONFIG.socketURL = 'ws://' + resData.extranetIp + ':' + resData.extranetPort
 						SDK_CONFIG.socketExtranetURL = 'ws://' + resData.extranetIp + ':' + resData.socketExtranetPort + `?token=${resData.cardToken}&type=business`
 						SDK_CONFIG.sn = resData.sn
@@ -378,6 +385,11 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			if (event.data === 'close') {
 				console.log('触发CLose。。。', SOFT_SDK_CONFIG.webSocketWorker)
 				SOFT_SDK_CONFIG.webSocketWorker.postMessage('restart')
+			}
+			if ( typeof event.data === 'object' && event.data.startPush) {
+				// 上报： 开始推流
+				console.log('开始上报推流============', event.data.startPush)
+				CLOUD_GAME_SDK.isStartPush();
 			}
 			if ( typeof event.data === 'object' && (event.data.setResolving === 0 || event.data.setResolving === 1) ) {
 				// 设置横竖屏
@@ -727,7 +739,13 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			playerVideo.setAttribute('height',  (SDK_CONFIG.isLandscape ? cw : ch) + 'px')
 		}
 	},
-	touchClick: (event, type) => {
+	/**
+	 * 
+	 * @param event 事件
+	 * @param type 类型： 0 / 1 / 2
+	 * @param bool 是否打印坐标
+	 */
+	touchClick: (event, type, bool) => {
 		SDK_CONFIG.oldTime = new Date().getTime(); // 鼠标点击重置停留的时间
 		var canvasWidth = Number(window.innerWidth);
 		var canvasHeight = Number(window.innerHeight);
@@ -738,7 +756,9 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 		}
 		console.log(event, type, '588', SDK_CONFIG.isLandscape)
 		let touches: any[] = event.changedTouches
-		var ongoingTouches: any[] = []
+		var ongoingTouches: any[] = [];
+		// 用来打印的 x/y 坐标值
+		let posX: number, posY: number;
 		for (var i = 0; i < touches.length; i++) {
 			var idx = ongoingTouches.findIndex(function (ele) {
 			return ele.identifier === touches[i].identifier
@@ -760,8 +780,8 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			// 横屏游戏
 			if (SDK_CONFIG.isLandscape) {
 				// 根据游戏的分辨率 设置
-				let posX = (SDK_CONFIG.videoWidth * 1.0 * touches[i].clientY) / canvasHeight
-				let posY = (SDK_CONFIG.videoHeight * 1.0 * (canvasWidth - touches[i].clientX)) / canvasWidth
+				posX = (SDK_CONFIG.videoWidth * 1.0 * touches[i].clientY) / canvasHeight
+				posY = (SDK_CONFIG.videoHeight * 1.0 * (canvasWidth - touches[i].clientX)) / canvasWidth
 				// // 重力感应
 				// if (this.SDK_CONFIG.isLandscape) {
 				//   // 根据游戏的分辨率 设置
@@ -775,13 +795,13 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 					ongoingTouches,
 					touches[i].identifier
 				)
-				SDK_CONFIG.controlWs.send(buffer)
+				SDK_CONFIG.controlWs.send(buffer);
 			} else {
 				// 竖屏游戏
 				let touches = event.changedTouches
 				// 根据游戏的分辨率 设置
-				let posX = (touches[i].clientX * SDK_CONFIG.videoWidth * 1.0) / canvasWidth
-				let posY = (touches[i].clientY * SDK_CONFIG.videoHeight * 1.0) / canvasHeight
+				posX = (touches[i].clientX * SDK_CONFIG.videoWidth * 1.0) / canvasWidth
+				posY = (touches[i].clientY * SDK_CONFIG.videoHeight * 1.0) / canvasHeight
 				// // 重力感应
 				// if (this.SDK_CONFIG.isLandscape) {
 				//   // 根据游戏的分辨率 设置
@@ -800,12 +820,52 @@ export const CLOUD_GAME_SDK: CloudGameSdk = {
 			if (idx < 0) {
 				ongoingTouches.push(touches[i])
 			}
+
+			// 展示log信息
+			if (bool) {
+				console.info('== 推流宽高 & 设备宽高: ', SDK_CONFIG.videoWidth, SDK_CONFIG.videoHeight, canvasWidth, canvasHeight);
+				console.info('== 是否横屏: ', SDK_CONFIG.isLandscape);
+				console.info('== Before 坐标(x / y): ', touches[i].clientX.toFixed(2), touches[i].clientY.toFixed(2));
+				console.info('== After   坐标(x / y): ', posX.toFixed(2), posY.toFixed(2));
+			}
 		}
 	},
 	doSomeConfig: () => {
+		// 上报： 开始推流
+		CLOUD_GAME_SDK.isStartPush();
+
 		SDK_CONFIG.ws.send(ConfigChannel(SDK_CONFIG.sn, "chaohang"));
 		var checkBuffer = GetScreenState();
 		SDK_CONFIG.ws.send(checkBuffer);
+	},
+	// 上报： 开始推流
+	isStartPush: () => {
+		// 鉴权通过后 发 /api/blade-game/sdk/start/push
+		const httpsUrl = typeof SDK_CONFIG.baseUrl != 'undefined' && SDK_CONFIG.baseUrl ? SDK_CONFIG.baseUrl : SDK_CONFIG.apiURL;
+		const dataType = {
+			'cardId': CARD_INFO.cardId,
+			'recordTime': new Date().getTime(),
+			'isPush': 1,
+		};
+		$.ajax({
+			url: httpsUrl + SDK_CONFIG.isStartPush,
+			data: JSON.stringify(dataType),
+			type: 'post',
+			dataType: 'json',
+			contentType: 'application/json;charset=UTF-8',
+			success: function(res) {
+				if (res.code === 200) {
+					console.log('开始推流OK')
+				} else {
+					// 排队接口返回错误
+					console.log('开始推流Error')
+				}
+			},
+			error: function(err) {
+				// 排队接口接口失败
+				console.log('开始推流Error')
+			}
+		})
 	},
 	convertPosDefaultLandspace: (x, y) => {
 		let posX, posY;

@@ -31,8 +31,9 @@ export default {
         clear({targets: ['dist/cloudgame_sdk.js']}), //清除dist目录
         uglify({
             compress:{
-                drop_debugger:true,
-                drop_console:true
+                drop_debugger: true,
+                // drop_console: true,
+                pure_funcs: [ 'console.log' ]
             }
         }),
         resolve({ extensions }),

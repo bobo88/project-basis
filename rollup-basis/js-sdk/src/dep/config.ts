@@ -68,9 +68,11 @@ export const SDK_CONFIG: ConfigType = {
     payURL: '',
 
 	// 接口相关
+	baseUrl: '',
 	apiURL: 'http://14.18.190.140:9090',
 	getSdkTokenURL: '/api/blade-game/sdk/auth/token',
 	lineUpURL: '/api/blade-game/sdk/lineup',
+	isStartPush: '/api/blade-game/sdk/start/push',
 };
 
 export const CARD_INFO = {
