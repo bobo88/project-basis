@@ -1,0 +1,9 @@
+{
+    "globals": {
+        "$TzMessage": true,
+        "$TzMsgBox": true,
+        "$tzStore": true,
+        "$TzUt": true,
+        "dayjs": true
+    }
+}

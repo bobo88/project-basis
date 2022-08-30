@@ -1,0 +1,30 @@
+{
+  "name": "webpack-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "rimraf ./dist && webpack --config ./webpack.config.js --mode development",
+    "build": "rimraf ./dist && webpack --config ./webpack.config.js --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
+    "path-browserify": "^1.0.1",
+    "rimraf": "^3.0.2",
+    "terser-webpack-plugin": "^5.3.3",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

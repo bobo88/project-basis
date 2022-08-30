@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+   <title></title>
+   <!-- <link rel="stylesheet" href="css/style.css"/> -->
+   <script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+   <script src="css/html2canvas.min.js"></script>
+   <script src="css/canvas2image.js"></script>
+   <script src="css/base64.js"></script>
+
+   <style>
+    .flex_gird img {
+        width: 150px;
+        height: 150px;
+    }
+   </style>
+<body  class="bg_color">
+	<div id="flexGird" style="background:#fff">
+		<div class="flex_item_head">
+			<h2>牛气冲天</h2>
+			<p>最高奖金100,000元</p>
+		</div>
+		<div class="flex_gird" >
+			<a href="javascript:void(0);">
+				<img src="icon/gag.jpg" >
+			</a>
+			<a href="javascript:void(0);">
+				<img src="icon/gag.jpg" >
+			</a>
+			<a href="javascript:void(0);">
+				<img src="icon/gag.jpg" >
+			</a>
+			<a href="javascript:void(0);">
+				<img src="icon/gag.jpg" >
+			</a>
+		</div>
+	</div>
+
+	<div class="flex_line"></div>
+
+	<div class="flex_gird_foot">
+		<div class="flex_gird_alt">
+			可点击上方游戏票进行"已刮奖票拍照上传"
+		</div>
+		
+		<div class="flexBtn">
+			<a href="javascript:;" class="flexBtnLeft" id="btnSave">生成照片去转发</a>
+			<a href="javascript:;" class="flexBtnRight">重新上传游戏票</a>
+		</div>
+	</div>
+
+	
+	<!-- 将页面转换为画布 -->
+	<canvas id="canvas"></canvas>
+
+	<!-- 存储base64图片 -->
+	<div class="base_img" >
+		<div class="base_flex" >
+			<div class="base_bg" >
+				<img src="" id="base64Img" style="background:#fff;">
+				<p>长按图片保存到手机</p>
+			</div>
+		</div>
+	</div>
+	
+
+
+<script>
+// 获取按钮id
+var btnSave = document.getElementById("btnSave");
+
+// 获取内容id
+var content = document.getElementById("flexGird");
+
+// 进行canvas生成
+btnSave.onclick = function(){
+	html2canvas(content, {
+        onrendered: function(canvas) {
+	
+        	//添加属性
+        	canvas.setAttribute('id','thecanvas');
+			
+			//读取属性值
+            //document.getElementById('canvas').innerHTML = '';
+            document.getElementById('canvas').appendChild(canvas);
+
+			// 将图片转成base64格式
+			var img = canvas.toDataURL("image/jpeg", 1.0); // toDataUrl可以接收2个参数，参数一：图片类型，参数二： 图片质量0-1（不传默认为0.92）
+			document.getElementById('base64Img').setAttribute("src", img) // 将base64格式图片显示到页面上
+
+        }
+	});
+};
+</script>
+</body>
+</html>

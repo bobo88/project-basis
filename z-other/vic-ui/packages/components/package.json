@@ -1,0 +1,20 @@
+{
+  "name": "ok-ui",
+  "version": "1.0.6",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "vite build"
+  },
+  "files": [
+    "es",
+    "lib"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@ok-ui/utils": "workspace:^1.0.1"
+  },
+  "typings": "lib/index.d.ts"
+}
