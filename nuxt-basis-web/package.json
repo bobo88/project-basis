@@ -6,6 +6,7 @@
     "dev": "cross-env MODE=dev nuxt --open",
     "build": "cross-env MODE=pro nuxt build && yarn start",
     "build:dev": "cross-env MODE=dev nuxt build && yarn dev",
+    "build:test": "cross-env MODE=test nuxt build && yarn dev",
     "start": "cross-env MODE=pro nuxt start",
     "generate": "nuxt generate"
   },

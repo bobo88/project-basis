@@ -1,11 +1,27 @@
 <template>
   <div class="section-frontpage">
     深圳市臂云科技有限公司 -- 首页
+    <el-button type='primary' size='small' class="ml20" @click="testAxios">点我验证Axios接口</el-button>
   </div>
 </template>
 
-<script lang="ts" setup>
-  // xx
+<script>
+  export default {
+    name: 'SectionFrontpage',
+    data () {
+      return {
+        // x
+      }
+    },
+    methods: {
+      testAxios () {
+        // console.log(1111, this.$axios.get('/xxx'))
+        this.$axios.get('/xxx').then(res => {
+          console.log(res, 6666)
+        })
+      }
+    },
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

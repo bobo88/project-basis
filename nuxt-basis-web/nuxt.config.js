@@ -46,14 +46,10 @@ export default {
     '@nuxtjs/axios',
   ],
 
-  env: {
-    baseUrl: env[process.env.MODE].ENV_API   // process.env 获取的是package里面的MODE值
-  },
-
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: env[process.env.MODE].ENV_API,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
