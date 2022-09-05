@@ -1,0 +1,12 @@
+@import "./base/common"; /* 通用ui */
+@import './media.scss';
+
+.container {
+  position: relative;
+  margin: 0 auto !important;
+  padding: 0 20px;
+  width: 100%;
+  padding: 12px;
+}
+
+/* 其他样式 */
