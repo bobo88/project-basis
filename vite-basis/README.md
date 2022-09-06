@@ -2,6 +2,10 @@
 *<font color="#FF6600" >Tips：提供SDK需求</font>*  
 
 ### 一、项目基本介绍：
+```js
+    // yarn create vite
+    // 直接生成【vite-project】项目
+```
 
 
 ### 三、参考资料：
