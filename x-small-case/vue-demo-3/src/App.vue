@@ -1,11 +1,17 @@
 <template>
-  <h1 style="color:#f00;">Vue 3</h1>
-  <!-- <h1>{{ useTabs.tabs }}</h1>
-  <h1>{{ useB.tabs }}</h1> -->
-  <h1>{{ useTabs.tabs }}</h1>
-  <p>
-    {{ Obj }}
-  </p>
+<div>
+    <div style="margin-bottom: 10px; border:2px solid #000;">
+      <h1 style="color:#f00;">Vue 3 (App.vue)</h1>
+      <!-- <h1>{{ useTabs.tabs }}</h1>
+      <h1>{{ useB.tabs }}</h1> -->
+      <h1>{{ useTabs.tabs }}</h1>
+      <p>
+        {{ Obj }}
+      </p>
+    </div>
+
+    <router-view></router-view>
+</div>
 </template>
 
 <script setup>
