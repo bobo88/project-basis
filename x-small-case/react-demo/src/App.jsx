@@ -1,4 +1,5 @@
 import React from 'react';
+import './assets/scss/index.css'
 
 const msg = '我是msg信息'
 
@@ -10,15 +11,16 @@ class App extends React.Component {
             isHot: true
         };
     }
-
+    
     render() {
+        console.log(this);
         const { isHot } = this.state;
         return (
             <div>
                 <h1>Hello, React!</h1>
-                <p>{ msg }</p>
-                <p>今天的天气真 { isHot ? '炎热' : '凉爽'}</p>
-                <button onClick={ this.changeState.bind(this) }>changeState</button>
+                <p className={ isHot ? 'red' : 'green' }>{ msg }</p>
+                <p className='desc'>今天的天气真 <span className={ isHot ? 'red' : 'green' }>{ isHot ? '炎热' : '凉爽'}</span></p>
+                <button onClick={ this.changeState.bind(this) } style={{ margin: '0 20px 0 0' }}>changeState</button>
                 <input type="text" />
             </div>
         );
@@ -27,7 +29,7 @@ class App extends React.Component {
     changeState() {
         console.log(this.state)
         this.setState({
-            isHot: false
+            isHot: !this.state.isHot
         })
         // this.state = { isHot: false}
     }
