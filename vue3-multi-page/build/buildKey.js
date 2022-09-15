@@ -5,6 +5,6 @@ let BUILD_KEY = null;
 if (buildKey && buildKey.length > 0) {
   BUILD_KEY = buildKey[0].split('=')[1]
 }
-console.log("🚀 ~ file: vue.config.js ~ line 14 ~ BUILD_KEY", BUILD_KEY)
+console.log("🚀 ~ file: vue.config.js ~ line 14 ~ BUILD_KEY", BUILD_KEY, process.env.NODE_ENV, process.env.VUE_APP_BASE_URL)
 
 module.exports = BUILD_KEY

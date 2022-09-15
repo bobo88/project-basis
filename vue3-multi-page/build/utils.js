@@ -19,12 +19,24 @@ exports.setPages = configs => {
         let conf = {
             // page 的入口
             entry: filePath,
-            publicPath: '../',
+
+            // 2022-08-19 change =================
+            // New:
+            publicPath: './',
+            // Old:
+            // publicPath: '../',
+
             // assetsDir: filename,
             // 模板来源
             template: tmp + '.html', 
             // 在 dist/index.html 的输出
-            filename:  filename + '/' + filename + '.html', 
+
+            // 2022-08-19 change =================
+            // New:
+            filename:  filename + '.html', 
+            // Old:
+            // filename:  filename + '/' + filename + '.html', 
+
             // 页面模板需要加对应的js脚本，如果不加这行则每个页面都会引入所有的js脚本
             chunks: ['manifest', 'vendor', filename], 
             inject: true, // 是否注入资源
