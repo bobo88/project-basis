@@ -5,6 +5,7 @@ const smp = new speedMeasureWebpackPlugin();
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 // 字符串
@@ -60,7 +61,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './public/index.html'
         }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'index.css'
+        }),
         // new MiniCssExtractPlugin({
         //     filename:'css/built.css'//对输出的文件进行重命名,默认为main.css
         // })
@@ -71,11 +74,11 @@ module.exports = {
         hot: true                 // 开启热更新
     },
     optimization: {
-        // minimizer: [
-        //     // 在 webpack@5 中，你可以使用 `...` 语法来扩展现有的 minimizer（即 `terser-webpack-plugin`），将下一行取消注释
-        //     // `...`,
-        //     // new CssMinimizerPlugin(),
-        // ],
+        minimizer: [
+            // 在 webpack@5 中，你可以使用 `...` 语法来扩展现有的 minimizer（即 `terser-webpack-plugin`），将下一行取消注释
+            // `...`,
+            new CssMinimizerPlugin(),
+        ],
         splitChunks: {
             // minSize: 200,
             // 这里的默认配置项省略，它们最终都会作用到 cacheGroups 上
