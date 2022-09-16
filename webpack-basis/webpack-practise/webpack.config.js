@@ -12,7 +12,8 @@ new webpack.BannerPlugin({
     banner: 'hello world',
 });
 
-module.exports = smp.wrap({
+// smp.wrap(
+module.exports = {
     mode: 'production', // development
     target: ['web', 'es5'],
     entry: ['./src/index.js', './src/user.js'],
@@ -31,7 +32,12 @@ module.exports = smp.wrap({
             {
                 test: /\.s?css$/i,
                 exclude: /node_modules/, // 排除编译 node_modules
-                use: ['style-loader',MiniCssExtractPlugin.loader,"css-loader", "sass-loader"],
+                use: ['style-loader', {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                      esModule: false,
+                    },
+                },"css-loader", "sass-loader"],
             },
             {
                 test: /\.ts|tsx$/,
@@ -61,6 +67,7 @@ module.exports = smp.wrap({
         // new BundleAnalyzerPlugin()
     ],
     devServer: {
+        stats: 'errors-only',
         hot: true                 // 开启热更新
     },
     optimization: {
@@ -83,4 +90,4 @@ module.exports = smp.wrap({
         }
     }
 
-});
+};
