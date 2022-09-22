@@ -1,0 +1,19 @@
+@import "./base.scss";
+.desc {
+  width: 375px;
+  color: #f00;
+  font-size: 14px;
+}
+.list {
+  width: 100%;
+  li {
+    width: 37.5px;
+    display: inline-block;
+  }
+}
+html,body{
+  -webkit-overflow-scrolling : touch !important;
+  overflow: auto !important;
+  height: 100% !important;
+}
+
