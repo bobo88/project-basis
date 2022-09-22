@@ -1,0 +1,580 @@
+// cover some element-ui styles
+
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  color: #fff !important;
+  font-weight: 400 !important;
+}
+
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+.cell {
+  .el-tag {
+    margin-right: 0px;
+  }
+}
+
+.small-padding {
+  .cell {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.fixed-width {
+  .el-button--mini {
+    padding: 7px 10px;
+    min-width: 60px;
+  }
+}
+
+.status-col {
+  .cell {
+    padding: 0 10px;
+    text-align: center;
+
+    .el-tag {
+      margin-right: 0px;
+    }
+  }
+}
+
+// to fixed https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+// refine element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+// dropdown
+.el-dropdown-menu {
+  a {
+    display: block
+  }
+}
+
+// fix date-picker ui bug in filter-item
+.el-range-editor.el-input__inner {
+  display: inline-flex !important;
+}
+
+// to fix el-date-picker css style
+.el-range-separator {
+  box-sizing: content-box;
+}
+
+.transparent {
+  &.el-table {
+    border-collapse: collapse !important;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    // background: transparent !important;
+    background: -webkit-linear-gradient(90deg, rgba(0, 6, 45, 0) 0%, rgba(32, 107, 255, 0.1) 50%, rgba(0, 6, 45, 0) 100%);
+    background: -moz-linear-gradient(90deg, rgba(0, 6, 45, 0) 0%, rgba(32, 107, 255, 0.1) 50%, rgba(0, 6, 45, 0) 100%);
+    background: -o-linear-gradient(90deg, rgba(0, 6, 45, 0) 0%, rgba(32, 107, 255, 0.1) 50%, rgba(0, 6, 45, 0) 100%);
+    background: linear-gradient(90deg, rgba(0, 6, 45, 0) 0%, rgba(32, 107, 255, 0.1) 50%, rgba(0, 6, 45, 0) 100%);
+    &::before {
+      height: 0 !important;
+    }
+    &.el-table--enable-row-hover .el-table__body tr:hover > td {
+      background: transparent !important;
+    }
+    th.is-leaf, td {
+      border-bottom: 1px solid rgba(21, 161, 254, 0.2);
+    }
+    .el-table__header, .el-table__body, .el-table__footer {
+      width: auto !important;
+      border-collapse: collapse !important;
+    }
+    &.el-table .cell {
+      padding: 0 !important;
+    }
+    th, tr {
+      background: transparent !important;
+    }
+    tr {
+      border-bottom: 1px solid rgba(21, 161, 254, 0.2);
+      // border-image: -webkit-linear-gradient(45deg, #0F3467 0%, #15A1FE 50%, #0F3467 100%);
+      // border-image: -moz-linear-gradient(45deg, #0F3467 0%, #15A1FE 50%, #0F3467 100%);
+      // border-image: -o-linear-gradient(45deg, #0F3467 0%, #15A1FE 50%, #0F3467 100%);
+      // border-image: linear-gradient(45deg, #0F3467 0%, #15A1FE 50%, #0F3467 100%);
+    }
+    td {
+      border: none;
+      // border-bottom: 1px solid linear-gradient(45deg, #0F3467 0%, #15A1FE 50%, #0F3467 100%);
+    }
+  }
+}
+.dark {
+  &.el-input--mini .el-input__inner {
+    color: #fff;
+    background: none !important;
+    border: none !important;
+  }
+  &.el-select--mini {
+    .el-input--mini {
+      .el-input__inner {
+        color: #fff;
+        background: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      }
+    }
+  }
+  &.like-select {
+    &.el-input--mini {
+      .el-input__inner {
+        color: #fff;
+        background: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      }
+    }
+  }
+  &.el-range-editor {
+    &.el-input__inner{
+      color: #fff;
+      background: none !important;
+      border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    }
+    &.el-range-editor--mini .el-range-input {
+      background: none !important;
+    }
+    .el-range-separator {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+  }
+}
+.small-padding {
+  .el-input__inner{
+    padding: 0 8px !important;
+    text-align: center !important;
+  }
+}
+.bo-checkbox {
+  .el-checkbox__label {
+    color: #606266 !important;
+  }
+}
+.bo-loading-white {
+  .el-loading-mask {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+  }
+}
+.el-tabs {
+  color: #fff !important;
+  // background: rgba(32, 107, 255, 0.1) !important;
+  &.el-tabs--card > .el-tabs__header {
+    border-bottom: 1px solid rgba(32, 107, 255, 1);
+    .el-tabs__nav {
+      border: none !important;
+      border-color: rgba(32, 107, 255, 0.1) !important;
+    }
+  }
+  .el-tabs__item {
+    color: #fff !important;
+    border-color: rgba(32, 107, 255, 0.1) !important;
+    background: rgba(32, 107, 255, 0.1) !important;
+    &.is-active {
+      background: rgba(32, 107, 255, 0.4) !important;
+    }
+  }
+}
+.iconfont {
+  &.f24 {
+    font-size: 24px !important;
+  }
+}
+.search-dialog {
+  .el-dialog {
+    background: none;
+    border-radius: 8px !important;
+    overflow: hidden;
+  }
+  .el-dialog__title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #004EE9;
+    line-height: 33px;
+    letter-spacing: 5px;
+  }
+  .el-dialog__header {
+    background: #fff;
+  }
+  .el-dialog__body, .el-dialog__footer {
+    background: #F3F3F3;
+  }
+}
+.search-dialog-cont {
+  .el-select > .el-input {
+    &.el-input--mini .el-input__inner {
+      color: rgba(0, 0, 0, 0.7) !important;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+    }
+  }
+  .el-input {
+    &.el-input--mini .el-input__inner {
+      color: rgba(0, 0, 0, 0.7) !important;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+    }
+  }
+  .el-tag.el-tag--info {
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+}
+.el-loading-mask {
+  background-color: #040f51 !important;
+}
+.el-date-editor .el-range-input {
+  color: #fff;
+}
+
+.el-submenu {
+  .el-menu-item {
+    padding-left: 53px !important;
+  }
+}
+.el-button--mini {
+  span {
+    font-weight: bold !important;
+  }
+}
+.el-button--primary {
+  background: #206BFF;
+  border-color: #206BFF;
+  &:hover, &:focus {
+    background: #206BFF;
+    border-color: #206BFF;
+  }
+  &.is-plain {
+    background: #fff;
+    border-color: #206BFF;
+    &:hover, &:focus {
+      background: #206BFF;
+      border-color: #206BFF;
+    }
+  }
+}
+
+.search-dialog {
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(0, 0, 0, 0.7) !important;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+  .el-select .el-input .el-select__caret {
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+}
+
+.tip-box {
+  .point {
+    margin-bottom: 2px;
+    height: 20px;
+    line-height: 20px;
+    color: #000;
+  }
+  .cont {
+    margin-bottom: 5px;
+    line-height: 20px;
+    color: #666;
+  }
+}
+
+.el-scrollbar__wrap { overflow-x: hidden; }
+.retention-table {
+  &.el-table {
+    border: none !important;
+    background: none !important;
+    &.el-table::before, &.el-table--group::after, &.el-table--border::after {
+      background: none !important;
+    }
+    thead {
+      .cell {
+        padding: 0 2px !important;
+        width: 100%;
+        height: 40px;
+        line-height: 20px;
+      }
+    }
+    .cell {
+      padding: 0 2px !important;
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      color: rgba(255, 255, 255, 0.7);
+      .item-box, .list-item {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        color: rgba(255, 255, 255, 0.7);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .grey {
+        .list-item {
+          color: rgba(0, 0, 0, 0.45);
+        }
+      }
+    }
+    tr:hover {
+      td {
+        background: none !important;
+      }
+    }
+    td {
+      padding: 2px 0;
+      height: 34px;
+      border: none !important;
+    }
+    tr, th {
+      border: none !important;
+      background: none !important;
+    }
+  }
+}
+.el-table--scrollable-y .el-table__body-wrapper {
+  padding-bottom: 10px !important;
+}
+//滚动条的宽度
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+//滚动条的滑块
+::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 3px;
+}
+
+.el-select-dropdown__list {
+  padding-bottom: 15px !important;
+}
+.customize-input {
+  background: none !important;
+  .el-input__inner {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff !important;
+    background: none !important;
+  }
+}
+// 自定义表格样式
+.customize-table {
+  &.el-table {
+    color: #fff !important;
+    background: none !important;
+    &::before {
+      height: 0 !important;
+    }
+    thead {
+      font-size: 14px;
+      color: #fff !important;
+      background: rgba(255, 255, 255, 0.2) !important;
+    }
+    tr, th, td {
+      background: none !important;
+    }
+    .is-leaf, td {
+      border-bottom: none !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+      &:last-child {
+        border-right: none !important;
+      }
+    }
+    .el-table__header {
+      .is-leaf {
+        &:nth-last-child(2) {
+          border-right: none !important;
+        }
+      }
+    }
+    .el-table__body-wrapper {
+      .el-table__row {
+        background: rgba(255, 255, 255, 0.04) !important;
+        &:nth-child(even) {
+          background: rgba(255, 255, 255, 0.06) !important;
+        }
+      }
+    }
+  }
+}
+.customize-btn {
+  display: inline-block;
+  padding: 0 12px;
+  height: 24px;
+  line-height: 22px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  &:hover{
+    background: rgba(32, 107, 255, 0.35);
+    border: 1px solid rgba(32, 107, 255, 0.35);
+  }
+}
+.customize-add-btn {
+  position: relative;
+  z-index: 1;
+  padding-left: 30px;
+  width: 120px;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  text-decoration: none;
+  text-align: center;
+  &:hover, &:focus, &:active {
+    color: #fff;
+  }
+  .el-icon-plus {
+    position: absolute;
+    z-index: 9;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #206BFF;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 15px;
+    background: #fff;
+    vertical-align: top;
+  }
+}
+.customize-select {
+  background: #020F43;
+  border-radius: 4px;
+  .el-input__inner {
+    color: #fff !important;
+    background: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  }
+}
+.el-select-dropdown__item {
+  span {
+    color: rgba(0, 0, 0, 0.7) !important;
+  }
+}
+
+.not-hidden {
+  &.el-table {
+    overflow: visible;
+    .el-table__body-wrapper{
+      overflow: visible;
+    }
+    .cell {
+      overflow: visible;
+    }
+  }
+}
+.change-perm-box {
+  .el-radio {
+    color: #fff;
+  }
+  .el-icon-arrow-down {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+.el-input.is-disabled .el-input__inner {
+  background: #dedede;
+}
+
+.diy-select {
+  .el-input__inner {
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
+    background: none !important;
+  }
+}
+.el-button--primary {
+  position: relative;
+  z-index: 1;
+  &:hover {
+    &::before {
+      content: ' ';
+      position: absolute;
+      z-index: 9;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+// 自定义下拉选项框
+.el-select-dropdown {
+  &.is-multiple {
+    .el-select-dropdown__item {
+      padding: 0 20px 0 40px !important;
+      &:before, &::before {
+        position: absolute;
+        z-index: inherit;
+        top: 9px;
+        left: 14px;
+        content: ' ';
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 1px solid #DCDFE6;
+        border-radius: 3px;
+      }
+      &:hover {
+        &:before, &::before {
+          border-color: #1890ff;
+        }
+      }
+      &.selected:before, &.selected::before {
+        background-color: #1890ff;
+        border-color: #1890ff;
+      }
+      &.selected:after, &.selected::after {
+        color: #fff;
+        right: auto !important;
+        left: 15px !important;
+        transform: scale(0.9);
+        -moz-transform: scale(0.9);
+        -o-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+      }
+    }
+  }
+}

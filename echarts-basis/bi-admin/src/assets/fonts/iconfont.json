@@ -1,0 +1,93 @@
+{
+  "id": "2268760",
+  "name": "new-bi",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "9697604",
+      "name": "管理",
+      "font_class": "icon_xinyong_xianxing_jijin-",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "12687171",
+      "name": "管理",
+      "font_class": "icon-",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "7424071",
+      "name": "互动",
+      "font_class": "hudong",
+      "unicode": "e6f9",
+      "unicode_decimal": 59129
+    },
+    {
+      "icon_id": "14964175",
+      "name": "渠道留存灰色",
+      "font_class": "qudaoliucunhuise",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "3851385",
+      "name": "仪表盘",
+      "font_class": "yibiaopan",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "17860480",
+      "name": "用户分析",
+      "font_class": "yonghufenxi",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "4331526",
+      "name": "展开侧边栏",
+      "font_class": "zhankaicebianlan",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "588706",
+      "name": "调度时间分布",
+      "font_class": "diaodushijianfenbu",
+      "unicode": "e6eb",
+      "unicode_decimal": 59115
+    },
+    {
+      "icon_id": "1243417",
+      "name": "通知",
+      "font_class": "nitification",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "7287156",
+      "name": "侧边栏弹出",
+      "font_class": "cebianlandanchu",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "7287157",
+      "name": "侧边栏收缩",
+      "font_class": "cebianlanshousuo",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "8361816",
+      "name": "问号",
+      "font_class": "wenhao",
+      "unicode": "e6c9",
+      "unicode_decimal": 59081
+    }
+  ]
+}
