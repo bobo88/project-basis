@@ -1,6 +1,5 @@
 {
   "files": [],
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "types"],
   "references": [
     {
       "path": "./tsconfig.config.json"

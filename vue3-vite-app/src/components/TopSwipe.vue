@@ -20,14 +20,17 @@
 </template>
 
 <script setup>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/free-mode";
-import { FreeMode } from "swiper";
-const modules = [FreeMode];
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import { FreeMode } from 'swiper'
+import { ref } from 'vue'
+const modules = [FreeMode]
 const props = defineProps({
-  list: Object,
-});
+  list: Object
+})
+const testData = ref(123)
+console.log(testData)
 </script>
 
 <style lang="scss">

@@ -5,7 +5,7 @@
       项目当前环境为：<span>{{ C_MODE }}</span>
     </h2>
     <h2>
-      项目当前配置的 VITE_BASE_URL 为：<span>{{ C_BASE_URL || "--" }}</span>
+      项目当前配置的 VITE_BASE_URL 为：<span>{{ C_BASE_URL || '--' }}</span>
     </h2>
   </div>
 </template>
@@ -31,6 +31,6 @@ span {
 </style>
 
 <script setup>
-import { C_APP_NAME, C_BASE_URL, C_MODE } from "../utils/envConfig";
-console.log(C_APP_NAME, C_BASE_URL, C_MODE);
+import { C_APP_NAME, C_BASE_URL, C_MODE } from '../utils/envConfig'
+console.log(C_APP_NAME, C_BASE_URL, C_MODE)
 </script>
