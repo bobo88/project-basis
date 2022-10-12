@@ -7,17 +7,20 @@
 <script lang="ts" setup>
   import { onBeforeMount, onMounted, onUpdated, Ref, ref, reactive, inject } from 'vue';
   import { Button } from 'ant-design-vue'
-  import bus from './bus';
   import { formatToDateTimeSss } from '/@/utils/dateUtil';
 
   const parentDesc = ref('')
 
-  bus.$on('props', (data: string) => {
-    parentDesc.value = data
+  onMounted(() => {
+    // $mybus.$on('bobo', (data: string) => {
+    //   console.log(111234)
+    //   parentDesc.value = data
+    // })
   })
 
+
   const changeHandle = () => {
-    let now = formatToDateTimeSss(new Date().getTime())
-    bus.$emit('desc', 'From子元素 ' + now)
+    // let now = formatToDateTimeSss(new Date().getTime())
+    // $mybus.$emit('desc', 'From子元素 ' + now)
   }
 </script>

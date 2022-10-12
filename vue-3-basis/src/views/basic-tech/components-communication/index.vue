@@ -2,7 +2,8 @@
   <div class="p-4">
     <div class="lg:flex">
       <div class="w-full enter-y">
-        <ProjectCard :loading="loading" class="enter-y" />
+        <!-- <ProjectCard :loading="loading" class="enter-y" /> -->
+        <CardOne />
       </div>
     </div>
   </div>
@@ -11,6 +12,7 @@
   import { ref } from 'vue';
   import { Card } from 'ant-design-vue';
   import ProjectCard from './components/ProjectCard.vue';
+  import CardOne from './components/CardOne.vue';
 
   const loading = ref(true);
 

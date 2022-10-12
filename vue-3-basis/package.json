@@ -44,6 +44,7 @@
     "crypto-js": "^4.1.1",
     "echarts": "^5.2.2",
     "lodash-es": "^4.17.21",
+    "mitt": "^3.0.0",
     "mockjs": "^1.1.0",
     "moment": "^2.29.1",
     "nprogress": "^0.2.0",

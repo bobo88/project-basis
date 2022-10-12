@@ -16,6 +16,10 @@ app.use(async (ctx, next) => {
   console.log('----------------------------------------')
   console.log(ctx.request)
   console.log('----------------------------------------')
+  console.log('=================')
+  console.log(ctx.hostname)
+  console.log(ctx.ips)
+  console.log('=================')
   console.log(`${ctx.method} ${ctx.url} - ${rt} - ${cookieCustom}`);
 });
 
