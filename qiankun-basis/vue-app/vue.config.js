@@ -10,13 +10,6 @@ module.exports = defineConfig({
         }
     },
     configureWebpack: {
-        // plugins: [
-        //     require('postcss-plugin-namespace')('#lee_project', {
-        //       ignore: [
-        //         'html', /body/, 'span', 'el-form-item'
-        //       ]
-        //     }),
-        // ],
         output: {
             library: 'vueApp',
             libraryTarget: 'umd',

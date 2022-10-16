@@ -45,10 +45,12 @@
           color: grey;
         }
       </style>
+    
       <div class="pop-up" id="pop-up-box">
         <div class="pop-up-cont">
           <h3 class="pop-up-tit">我是自定义弹窗</h3>
           <p class="pop-up-desc">一些奇奇怪怪的描述</p>
+          <button onclick="hiddenPopup('pop-up-box')">关闭弹窗</button>
         </div>
       </div>
     `;
@@ -58,10 +60,11 @@
   const showTc2 = () => {
     let popUpBox = document.createElement('div');
     let htmlCont = `
-      <div class="pop-up" id="pop-up-box">
+      <div class="pop-up" id="pop-up-box2">
         <div class="pop-up-cont">
           <h3 class="pop-up-tit">我是自定义弹窗</h3>
           <p class="pop-up-desc">一些奇奇怪怪的描述</p>
+          <button onclick="hiddenPopup('pop-up-box2')">关闭弹窗</button>
         </div>
       </div>
     `;
