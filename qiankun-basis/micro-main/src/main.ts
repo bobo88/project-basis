@@ -14,6 +14,10 @@ registerMicroApps([{
 )
 console.log(start, 888)
 // 启动 qiankun
-start();
+// start();
+start({
+    prefetch: 'all'
+});
+// start({ sandbox : { experimentalStyleIsolation: true } });
 
 createApp(App).use(router).mount("#base-app");

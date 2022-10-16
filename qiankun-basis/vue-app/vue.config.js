@@ -10,12 +10,20 @@ module.exports = defineConfig({
         }
     },
     configureWebpack: {
+        // plugins: [
+        //     require('postcss-plugin-namespace')('#lee_project', {
+        //       ignore: [
+        //         'html', /body/, 'span', 'el-form-item'
+        //       ]
+        //     }),
+        // ],
         output: {
             library: 'vueApp',
             libraryTarget: 'umd',
             // jsonpFunction: `webpackJsonp_${packageName}`
             // 注意 webpack 5要用下面的方式
-            chunkLoadingGlobal: `webpackJsonp_${packageName}`
+            chunkLoadingGlobal: `webpackJsonp_${packageName}`,
+            // sandbox : { experimentalStyleIsolation: true }
         }
     }
 })

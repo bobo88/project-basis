@@ -2,6 +2,9 @@ import './public-path';
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+
+import './assets/demo.scss'
+import './assets/vueapp.scss'
  
 function render (props = {}) {
     const { container } = props;
