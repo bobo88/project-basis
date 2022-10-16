@@ -7,8 +7,8 @@ import { registerMicroApps, start } from 'qiankun';
 // 在主应用中注册子应用
 registerMicroApps([{
         name: 'vueApp', // 微应用的名称 要求唯一
-        entry: '//localhost:8081',  // 通俗理解就是（微应用的访问地址）
-        // entry: 'http://demo.ycy88.com:8081',  // 通俗理解就是（微应用的访问地址）
+        // entry: '//localhost:8081',  // 通俗理解就是（微应用的访问地址）
+        entry: 'http://demo.ycy88.com:8081',  // 通俗理解就是（微应用的访问地址）
         container: '#vue',  // 微应用挂载到主应用上的容器
         activeRule: '/micro-vue', // 微应用激活条件
     }]
