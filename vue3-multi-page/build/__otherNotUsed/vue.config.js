@@ -1,6 +1,7 @@
 const path = require('path')
 const { defineConfig } = require('@vue/cli-service')
-const { EntryPagesInfo } = require('./build')
+const entryFile = require('./build/entryFiles')
+const utils = require('./build/utils')
 const BUILD_KEY = require('./build/tools/buildKey');
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -9,7 +10,7 @@ function resolve(dir) {
 module.exports = defineConfig({
   transpileDependencies: true,
   // 多页面配置
-  pages: EntryPagesInfo(),
+  pages: utils.setPages(),
   assetsDir: 'static',
   // 这行代码很重要
   outputDir: BUILD_KEY !== null ? `dist_${process.env.NODE_ENV}_${BUILD_KEY}` : `dist_${process.env.NODE_ENV}`,
@@ -28,7 +29,19 @@ module.exports = defineConfig({
     config.optimization.runtimeChunk("single");
   },
   // webpack配置， 通过 webpack-merge 合并到最终的配置中
-  configureWebpack: {},
+  configureWebpack: config => {
+    config.entry = entryFile.getEntries()
+    // 使用 return 一个对象会通过 webpack-merge 进行合并，plugins 不会置空
+    return {
+      // =========== 历史版本，已不再使用 ===========
+      // plugins: [
+      //   ...htmlPlugin.htmlPlugin({
+      //   // minify: {
+      //   //   collapseWhitespace: false, // 删除 html 中的空白符
+      //   // }
+      // })]
+    }
+  },
   // css预设器配置项
   css: {
     loaderOptions: {

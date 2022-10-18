@@ -1,8 +1,9 @@
 .DS_Store
 node_modules
-/dist__test
-/dist__development
-/dist__production
+/dist_test
+/dist_development
+/dist_production
+/dist*
 /dist
 
 

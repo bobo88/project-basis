@@ -1,7 +1,3 @@
-> *<font color="#FF6600">注意：</font>*
->> views 目录下可以有 index 目录， 但 index 目录下不能有 index.html，否则会报错。  
->> views 目录下的 非index 目录，里面可以有 index.html。
-
 # vue3多页面打包配置项目（vue3-multi-page）：
 + 本项目的搭建背景： 
     + 基于vue技术栈开发的H5单页面，在需求不断累加的情况下，会出现疲于`【搭建框架 - 下载依赖 - copy重复逻辑 - 修改页面】`等工作；
