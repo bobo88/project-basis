@@ -1,0 +1,20 @@
+/* pages/hot/hot.scss */
+.section {
+  margin-bottom: 30rpx;
+  padding: 0 20rpx;
+}
+.app-list {
+  padding: 20rpx;
+  .app-item {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20rpx;
+    .icon {
+      width: 120rpx;
+      height: 120rpx;
+      border: 1rpx solid #f7f7f7;
+      border-radius: 20rpx;
+    }
+  }
+}

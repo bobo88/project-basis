@@ -1,0 +1,66 @@
+/**index.scss**/
+.logo-box {
+  margin-bottom: 30rpx;
+  padding: 0 20rpx;
+  display: flex;
+  justify-content: start;
+  .logo {
+    width: 100rpx;
+    height: 100rpx;
+    border: 1rpx solid #409EFF;
+    border-radius: 50%;
+  }
+  .desc {
+    padding-left: 50rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: small;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.section {
+  margin-bottom: 30rpx;
+  padding: 0 20rpx;
+}
+.swiper-box {
+  margin-bottom: 30rpx;
+  height: 250rpx;
+}
+.swiper-item {
+  width: 100%;
+  height: 250rpx;
+  line-height: 250rpx;
+  color: #fff;
+  text-align: center;
+}
+.item-a {
+  background: #409EFF;
+} 
+.item-b {
+  background: #67C23A;
+} 
+.item-c {
+  background: #F56C6C;
+} 
+.item-d {
+  background: #069;
+} 
+.item-e {
+  background: #f60;
+} 
+
+.app-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20rpx;
+  .item {
+    margin-bottom: 20rpx;
+    width: 120rpx;
+    height: 120rpx;
+    border: 1rpx solid #f7f7f7;
+    border-radius: 20rpx;
+  }
+}

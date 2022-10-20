@@ -1,0 +1,57 @@
+/* pages/user/user.scss */
+.item {
+  width: 200rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.swiper-box {
+  height: 200rpx;
+}
+.swiper-item {
+  width: 100%;
+  height: 200rpx;
+  line-height: 200rpx;
+}
+.item-a {
+  background: #409EFF;
+} 
+.item-b {
+  background: #67C23A;
+} 
+.item-c {
+  background: #F56C6C;
+} 
+.line-box {
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+  text-align: center;
+}
+.scroll-box {
+  padding: 10px;
+  width: 200rpx;
+  height: 180rpx;
+  color: #fff;
+  text-align: center;
+}
+.swiper-box {
+  color: #fff;
+  text-align: center;
+}
+.btn-box {
+  padding: 10rpx;
+  display: flex;
+  justify-content: space-around;
+  .btn-item {
+    display: block;
+  }
+}
+.navigate-box {
+  padding: 10rpx;
+  display: flex;
+  justify-content: space-around;
+  .navigate-item {
+    display: block;
+  }
+}

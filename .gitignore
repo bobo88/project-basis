@@ -2,6 +2,7 @@
 
 # dependencies
 /**/**/node_modules
+/**/**/miniprogram_npm
 /dist
 /.pnp
 .pnp.js
