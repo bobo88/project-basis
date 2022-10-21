@@ -11,6 +11,10 @@ Page({
     loading: false,
     loadingHK: false,
   },
+  clickAppItem(e: any) {
+    let appName = e.currentTarget.dataset.item["im:name"].label
+    Toast.success(appName);
+  },
   onLoad() {
     // Toast.loading({
     //   message: '加载中...',

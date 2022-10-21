@@ -5,22 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    logo: '/images/yb.png',
+    showShare: false,
+    options: [
+      [
+        { name: '微信', icon: 'wechat' },
+        { name: '微博', icon: 'weibo' },
+        { name: 'QQ', icon: 'qq' },
+      ],
+      [
+        { name: '复制链接', icon: 'link' },
+        { name: '分享海报', icon: 'poster' },
+        { name: '二维码', icon: 'qrcode' },
+      ],
+    ],
   },
-  gotoIndex() {
-    wx.switchTab({
-      url: '/pages/index/index'
-    })
-  },
-  gotoInfo(){
-    wx.navigateTo({
-      url: '/pages/info/info'
-    })
-  },
-  gotoBack(){
-    wx.navigateBack();
-  },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */

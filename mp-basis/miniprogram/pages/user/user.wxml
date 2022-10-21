@@ -1,61 +1,43 @@
 <!--pages/user/user.wxml-->
+<view class="container">
+  <view class="logo-box">
+    <view class="logo">
+      <van-image
+        width="100rpx"
+        height="100rpx"
+        src="https://ycy88.com/yb.png"
+      />
+    </view>
+    <view class="desc">专注于前端领域，“凡事必有回响”</view>
+  </view>
 
-<p>单行布局</p>
-<view class="line-box">
-  <view class="item item-a">A</view>
-  <view class="item item-b">B</view>
-  <view class="item item-c">C</view>
-</view>
+  <swiper class="swiper-box" indicator-dots autoplay>
+    <swiper-item class="swiper-item item-a">VUE全家桶/ElementUI/Vant/Echarts</swiper-item>
+    <swiper-item class="swiper-item item-b">React全家桶/Material-UI/Antd</swiper-item>
+    <swiper-item class="swiper-item item-c">Gulp/Webpack/Vite/Rollup/Nginx/PM2</swiper-item>
+    <swiper-item class="swiper-item item-d">Node/Koa/Express</swiper-item>
+    <swiper-item class="swiper-item item-e">Sass/Less</swiper-item>
+  </swiper>
+  
+  <view class="blog-box">
+    <view class="user-info">个人博客网站</view>
+    <view class="blog-list">
+      <van-button class="btn-item" size="small" type="info">https://docs.ycy88.com</van-button>
+      <van-button class="btn-item" size="small" type="info">https://ycy88.com</van-button>
+    </view>
+  </view>
 
-<p>滚动布局</p>
-<scroll-view class="scroll-box" scroll-y>
-  <view class="item item-a">A</view>
-  <view class="item item-b">B</view>
-  <view class="item item-c">C</view>
-</scroll-view>
+  <view class="ghcode-box">
+    <image class="gh-code" src="/images/gh_code.jpg"></image>
+  </view>
 
-<p>轮播图</p>
-<swiper class="swiper-box" indicator-dots>
-  <swiper-item class="swiper-item item-a">A</swiper-item>
-  <swiper-item class="swiper-item item-b">B</swiper-item>
-  <swiper-item class="swiper-item item-c">C</swiper-item>
-</swiper>
-
-<p>按钮相关</p>
-<view class="btn-box">
-  <button size="mini" class="btn-item" type="default">默认按钮</button>
-  <button size="mini" class="btn-item" type="primary">主色调按钮</button>
-  <button size="mini" class="btn-item" type="warn">警告按钮</button>
-</view>
-
-<p>图片相关</p>
-<image src="/images/yb.png"></image>
-
-<view>导航配置相关</view>
-<view class="navigate-box">
-  <!-- 跳转到tabBar页面 -->
-  <navigator url="/pages/index/index" open-type="switchTab" class="navigate-item">
-    <button size="mini" class="btn-item" type="default" plain>首页</button>
-  </navigator>
-  <!-- 跳转到非tabBar页面 -->
-  <navigator url="/pages/info/info" open-type="navigate" class="navigate-item">
-    <button size="mini" class="btn-item" type="default" plain>info</button>
-  </navigator>
-  <!-- 后退: 这个按钮应该放在info页面更合适，但为了demo更直观，所以放这里 -->
-  <navigator open-type="navigateBack" delta="1" class="navigate-item">
-    <button size="mini" class="btn-item" type="default" plain>navigateBack</button>
-  </navigator>
-</view>
-<view class="navigate-box">
-  <!-- 编程式导航 -->
-  <button size="mini" class="btn-item" type="default" plain bindtap="gotoIndex">首页:F</button>
-  <button size="mini" class="btn-item" type="default" plain bindtap="gotoInfo">info:F</button>
-  <button size="mini" class="btn-item" type="default" plain bindtap="gotoBack">navigateBack:F</button>
-</view>
-<view class="navigate-box">
-  <!-- 导航传参数 -->
-  <navigator url="/pages/info/info?name=Bob&addr=SZ" open-type="navigate" class="navigate-item">
-    <button size="mini" class="btn-item" type="default" plain>带参数：info - name=Bob&addr=SZ</button>
-  </navigator>
+  <!-- <view class="share-box">
+    <van-button class="btn-item" size="small" type="primary">分享</van-button>
+  </view>
+  <van-share-sheet
+    show="{{ showShare }}"
+    title="立即分享给好友"
+    options="{{ options }}"
+  /> -->
 </view>
 

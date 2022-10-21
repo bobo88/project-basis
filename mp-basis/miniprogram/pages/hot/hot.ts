@@ -1,4 +1,5 @@
-// pages/req/req.ts
+// pages/hot/hot.ts
+import Toast from '@vant/weapp/toast/toast';
 Page({
 
   /**
@@ -10,18 +11,62 @@ Page({
     appFreeList: [],
     appFreeListHK: [],
   },
+  operateDetailsByIds (ids: string[], list: any, key: string) {
+    let that = this;
+    // ids: number[], topList
+    // getDetailsByIds
+    wx.request({
+      url: `https://itunes.apple.com/cn/lookup?id=${ids}`,
+      method: 'POST',
+      success: function(res) {
+        console.log(6666, res)
+        let resData = res.data || {};
+        let detailsObj = {};
+        if (resData.resultCount > 0) {
+          detailsObj = resData.results.reduce((prev, curr) => {
+            prev[curr.trackId] = {
+              averageUserRating: curr.averageUserRating,
+              userRatingCount: curr.userRatingCount,
+              description: curr.description,
+              sellerName: curr.sellerName,
+            };
+            return prev;
+          }, {}) || {};
+        }
+
+        const appList = list.map((sItem) => {
+          return {
+            ...detailsObj[sItem.id],
+            ...sItem
+          }
+        });
+        if (key === 'cn') {
+          that.setData({
+            appFreeList: appList
+          });
+          that.setData({
+            loading: false,
+          })
+        } else {
+          that.setData({
+            appFreeListHK: appList
+          });
+          that.setData({
+            loadingHK: false,
+          })
+        }
+      }
+    })
+  },
   // 对原始数据进行过滤处理
-  topDataFilter (resData: any[]) {
+  topDataFilter (entryData: any[]) {
     // @ts-ignore
-    // let topDataList = await res.then((data: PlResponsePromise) => {
-    //   return data.feed?.entry || []
-    // });
     const rtn = {
       ids: [],
       list: []
     };
     // 数据瘦身
-    rtn.list = resData.map((item) => {
+    rtn.list = entryData.map((item) => {
       // ids集合
       rtn.ids.push(item.id.attributes["im:id"]);
       return {
@@ -36,6 +81,7 @@ Page({
         summary: item.summary.label,
       };
     });
+    return rtn;
   },
   /**
    * 生命周期函数--监听页面加载
@@ -44,34 +90,16 @@ Page({
     // @ts-ignore
     let that = this;
     this.setData({
-      loading: true,
-      loadingHK: true
+      loading: true
     });
+    // 大陆
     wx.request({
       url: 'https://itunes.apple.com/cn/rss/topfreeapplications/limit=100/json',
       method: 'GET',
       success: function(res) {
         let resData: any = res.data;
-        that.setData({
-          appFreeList: resData.feed.entry
-        });
-        that.setData({
-          loading: false,
-        })
-      }
-    })
-    // 香港
-    wx.request({
-      url: 'https://itunes.apple.com/hk/rss/topfreeapplications/limit=100/json',
-      method: 'GET',
-      success: function(res) {
-        let resData: any = res.data;
-        that.setData({
-          appFreeListHK: resData.feed.entry
-        });
-        that.setData({
-          loadingHK: false,
-        })
+        let simpleEntryData = that.topDataFilter(resData.feed.entry || []);
+        that.operateDetailsByIds(simpleEntryData.ids, simpleEntryData.list, 'cn')
       }
     })
   },
@@ -111,11 +139,40 @@ Page({
 
   },
 
+  getHKAppData () {
+    let that = this;
+    this.setData({
+      loadingHK: true
+    });
+    // 香港
+    wx.request({
+      url: 'https://itunes.apple.com/hk/rss/topfreeapplications/limit=100/json',
+      method: 'GET',
+      success: function(res) {
+        let resData: any = res.data;
+        let simpleEntryData = that.topDataFilter(resData.feed.entry || []);
+        that.operateDetailsByIds(simpleEntryData.ids, simpleEntryData.list, 'hk')
+      }
+    })
+  },
+
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    // console.log(12212121, this.data.appFreeListHK && this.data.appFreeListHK.length > 0)
+    if (this.data.appFreeListHK && this.data.appFreeListHK.length > 0) {
+      Toast.loading({
+        message: '已加载完毕',
+        forbidClick: false,
+        loadingType: 'circular',
+        duration: 1000,
+        mask: false,
+      });
+      return false;
+    } else {
+      this.getHKAppData();
+    }
   },
 
   /**

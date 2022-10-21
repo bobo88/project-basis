@@ -2,19 +2,55 @@
 .section {
   margin-bottom: 30rpx;
   padding: 0 20rpx;
+  min-height: 100vh;
 }
 .app-list {
   padding: 20rpx;
   .app-item {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-items: flex-start;
+    align-items: center;
     margin-bottom: 20rpx;
+    .seq {
+      width: 50rpx;
+      color: #a2a2a2;
+    }
     .icon {
       width: 120rpx;
       height: 120rpx;
       border: 1rpx solid #f7f7f7;
       border-radius: 20rpx;
     }
+    .cont {
+      padding-left: 20rpx;
+      width: 400rpx;
+      flex: 1;
+      .name,
+      .category {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #333;
+        font-size: 28rpx;
+      }
+      .category {
+        line-height: 40rpx;
+        color: #a2a2a2;
+        font-size: 24rpx;
+      }
+    }
+    .star-cont {
+      display: flex;
+      align-items: center;
+      .star-rate {
+        margin-right: 12rpx;
+      }
+      .rate-count {
+        font-size: 24rpx;
+        color: #a2a2a2;
+      }
+    }
   }
 }
+

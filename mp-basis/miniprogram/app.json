@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/hot/hot",
     "pages/index/index",
+    "pages/hot/hot",
     "pages/user/user",
     "pages/info/info",
     "pages/logs/logs"
@@ -24,7 +24,8 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "van-image": "@vant/weapp/image/index",
-    "van-divider": "@vant/weapp/divider/index"
+    "van-divider": "@vant/weapp/divider/index",
+    "van-rate": "@vant/weapp/rate/index"
   },
   "tabBar": {
     "color": "#8a8a8a",

@@ -1,28 +1,11 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="logo-box">
-    <view class="logo">
-      <van-image
-        width="100rpx"
-        height="100rpx"
-        src="https://ycy88.com/yb.png"
-      />
-    </view>
-    <view class="desc">专注于前端领域，“凡事必有回响”</view>
-  </view>
-  <swiper class="swiper-box" indicator-dots autoplay>
-    <swiper-item class="swiper-item item-a">VUE全家桶/ElementUI/Vant/Echarts</swiper-item>
-    <swiper-item class="swiper-item item-b">React全家桶/Material-UI/Antd</swiper-item>
-    <swiper-item class="swiper-item item-c">Gulp/Webpack/Vite/Rollup/Nginx/PM2</swiper-item>
-    <swiper-item class="swiper-item item-d">Node/Koa/Express</swiper-item>
-    <swiper-item class="swiper-item item-e">Sass/Less</swiper-item>
-  </swiper>
-
+  
   <view class="section">
     <view class="cate-tit">Hot apps（中国大陆）</view>
-    <van-loading color="#1989fa" type="spinner" class="loading-icon" wx:if="{{loading}}" />
+    <van-loading size="30rpx" class="loading-icon" wx:if="{{loading}}">加载中...</van-loading>
     <view class="app-list" wx:else>
-      <view wx:for="{{appList}}" wx:key="item" class="item">
+      <view wx:for="{{appList}}" wx:key="item" class="item" bindtap="clickAppItem" data-item="{{ item }}">
         <image src="{{item['im:image'][2].label}}" mode="scaleToFill" class="item"></image>
       </view>
     </view>
@@ -30,13 +13,13 @@
 
   <view class="section">
     <view class="cate-tit">Hot apps（中国香港）</view>
-    <van-loading color="#1989fa" type="spinner" class="loading-icon" wx:if="{{loadingHK}}" />
+    <van-loading size="30rpx" class="loading-icon" wx:if="{{loadingHK}}">加载中...</van-loading>
     <view class="app-list" wx:else>
-      <view wx:for="{{appListHK}}" wx:key="item" class="item">
+      <view wx:for="{{appListHK}}" wx:key="item" class="item" bindtap="clickAppItem" data-item="{{ item }}">
         <image src="{{item['im:image'][2].label}}" mode="scaleToFill" class="item"></image>
       </view>
     </view>
   </view>
   
-  <!-- <van-toast id="van-toast" /> -->
+  <van-toast id="van-toast" />
 </view>
