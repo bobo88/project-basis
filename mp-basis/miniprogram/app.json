@@ -4,7 +4,8 @@
     "pages/hot/hot",
     "pages/user/user",
     "pages/info/info",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,7 +26,9 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "van-image": "@vant/weapp/image/index",
     "van-divider": "@vant/weapp/divider/index",
-    "van-rate": "@vant/weapp/rate/index"
+    "van-rate": "@vant/weapp/rate/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index"
   },
   "tabBar": {
     "color": "#8a8a8a",

@@ -1,63 +1,10 @@
 <!--pages/hot/hot.wxml-->
 <view class="container">
-  <view class="section">
-    <view class="cate-tit">Top free apps（中国大陆）</view>
-    <van-loading size="30rpx" class="loading-icon" wx:if="{{loading}}">加载中...</van-loading>
-    <view class="app-list" wx:else>
-      <view wx:for="{{appFreeList}}" wx:key="item" class="app-item">
-        <view class="seq">
-          {{index + 1}}
-        </view>
-        <image src="{{item.icon}}" mode="scaleToFill" class="icon"></image>
-        <view class="cont">
-          <view class="name">{{item.name}}</view>
-          <view class="category">{{item.category}}</view>
-          <view class="star-cont">
-            <van-rate
-              class="star-rate"
-              value="{{ item.averageUserRating }}"
-              size="{{ 12 }}"
-              gutter="{{ 1 }}"
-              color="#ffd21e"
-              void-icon="star"
-              void-color="#eee"
-              readonly
-            />
-            <span class="rate-count">({{item.userRatingCount}})</span>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <view class="section">
-    <view class="cate-tit">Top free apps（中国香港）</view>
-    <van-loading size="30rpx" class="loading-icon" wx:if="{{loadingHK}}">加载中...</van-loading>
-    <view class="app-list" wx:else>
-      <view wx:for="{{appFreeListHK}}" wx:key="item" class="app-item">
-        <view class="seq">
-          {{index + 1}}
-        </view>
-        <image src="{{item.icon}}" mode="scaleToFill" class="icon"></image>
-        <view class="cont">
-          <view class="name">{{item.name}}</view>
-          <view class="category">{{item.category}}</view>
-          <view class="star-cont">
-            <van-rate
-              class="star-rate"
-              value="{{ item.averageUserRating }}"
-              size="{{ 12 }}"
-              gutter="{{ 1 }}"
-              color="#ffd21e"
-              void-icon="star"
-              void-color="#eee"
-              readonly
-            />
-            <span class="rate-count">({{item.userRatingCount || 0}})</span>
-          </view>
-        </view>
-      </view>
-    </view>
+  <view wx:for="{{articlesList.tools}}" wx:key="index" class="art-item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+    <view class="num-key">{{ index + 1 }}.</view>
+    <!-- <van-button class="btn-item" size="small" color="linear-gradient(to right, #343434, #77CBB1)">{{item[1]}}</van-button> -->
+    <!-- <van-button class="btn-item" size="small" color="linear-gradient(to right, #460645, #FF5450)">{{item[1]}}</van-button> -->
+    <van-button class="btn-item" size="small" type="primary">{{item[1]}}</van-button>
   </view>
 
   <van-toast id="van-toast" />

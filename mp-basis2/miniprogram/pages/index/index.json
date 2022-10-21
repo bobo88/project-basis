@@ -1,0 +1,9 @@
+{
+  "usingComponents": {},
+  "lazyCodeLoading": "requiredComponents",
+  "navigationBarBackgroundColor": "#1296db",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "园博吧",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light"
+}

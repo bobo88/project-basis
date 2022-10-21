@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container">
+  
+  <view class="section">
+    <view class="cate-tit">Hot apps（中国大陆）</view>
+    <van-loading size="30rpx" class="loading-icon" wx:if="{{loading}}">加载中...</van-loading>
+    <view class="app-list" wx:else>
+      <view wx:for="{{appList}}" wx:key="item" class="item" bindtap="clickAppItem" data-item="{{ item }}">
+        <image src="{{item['im:image'][2].label}}" mode="scaleToFill" class="item"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="cate-tit">Hot apps（中国香港）</view>
+    <van-loading size="30rpx" class="loading-icon" wx:if="{{loadingHK}}">加载中...</van-loading>
+    <view class="app-list" wx:else>
+      <view wx:for="{{appListHK}}" wx:key="item" class="item" bindtap="clickAppItem" data-item="{{ item }}">
+        <image src="{{item['im:image'][2].label}}" mode="scaleToFill" class="item"></image>
+      </view>
+    </view>
+  </view>
+  
+  <van-toast id="van-toast" />
+</view>

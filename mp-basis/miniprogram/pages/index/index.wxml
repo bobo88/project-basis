@@ -1,25 +1,56 @@
 <!--index.wxml-->
 <view class="container">
   
-  <view class="section">
-    <view class="cate-tit">Hot apps（中国大陆）</view>
+  <van-collapse value="{{ activeNames }}" bind:change="onChange">
+
+    <van-collapse-item title="前端工程化" name="1">
+      <view wx:for="{{articlesList.tools}}" wx:key="index" class="art-item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+        <van-button class="btn-item" size="small" type="info">{{item[1]}}</van-button>
+      </view>
+    </van-collapse-item>
+    <van-collapse-item title="VUE系列" name="2">
+      <view wx:for="{{articlesList.vue}}" wx:key="index" class="art-item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+        <van-button class="btn-item" size="small" type="info">{{item[1]}}</van-button>
+      </view>
+    </van-collapse-item>
+    <van-collapse-item title="React系列" name="3">
+      <view wx:for="{{articlesList.react}}" wx:key="index" class="art-item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+        <van-button class="btn-item" size="small" type="info">{{item[1]}}</van-button>
+      </view>
+    </van-collapse-item>
+    <van-collapse-item title="Typescript系列" name="4">
+      <view wx:for="{{articlesList.ts}}" wx:key="index" class="art-item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+        <van-button class="btn-item" size="small" type="info">{{item[1]}}</van-button>
+      </view>
+    </van-collapse-item>
+    <van-collapse-item title="Node系列" name="5">
+      <view wx:for="{{articlesList.node}}" wx:key="index" class="art-item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+        <van-button class="btn-item" size="small" type="info">{{item[1]}}</van-button>
+      </view>
+    </van-collapse-item>
+    <van-collapse-item title="小程序专题" name="6">
+      <view wx:for="{{articlesList.mp}}" wx:key="index" class="art-item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+        <van-button class="btn-item" size="small" type="info">{{item[1]}}</van-button>
+      </view>
+    </van-collapse-item>
+    <van-collapse-item title="算法系列" name="7">
+      <view wx:for="{{articlesList.leetcode}}" wx:key="index" class="art-item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+        <van-button class="btn-item" size="small" type="info">{{item[1]}}</van-button>
+      </view>
+    </van-collapse-item>
+   
+  </van-collapse>
+
+
+  <!-- <view class="section">
+    <view class="cate-tit">小程序专题</view>
     <van-loading size="30rpx" class="loading-icon" wx:if="{{loading}}">加载中...</van-loading>
     <view class="app-list" wx:else>
-      <view wx:for="{{appList}}" wx:key="item" class="item" bindtap="clickAppItem" data-item="{{ item }}">
-        <image src="{{item['im:image'][2].label}}" mode="scaleToFill" class="item"></image>
+      <view wx:for="{{articlesList.mp}}" wx:key="index" class="item" bindtap="clickAppItem" data-item="{{ item[0] }}">
+        <van-button class="btn-item" size="small" type="info">{{item[1]}}</van-button>
       </view>
     </view>
-  </view>
+  </view> -->
 
-  <view class="section">
-    <view class="cate-tit">Hot apps（中国香港）</view>
-    <van-loading size="30rpx" class="loading-icon" wx:if="{{loadingHK}}">加载中...</van-loading>
-    <view class="app-list" wx:else>
-      <view wx:for="{{appListHK}}" wx:key="item" class="item" bindtap="clickAppItem" data-item="{{ item }}">
-        <image src="{{item['im:image'][2].label}}" mode="scaleToFill" class="item"></image>
-      </view>
-    </view>
-  </view>
-  
   <van-toast id="van-toast" />
 </view>

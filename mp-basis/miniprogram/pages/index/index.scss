@@ -5,16 +5,13 @@
   padding: 0 20rpx;
 }
 
-.app-list {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding: 20rpx;
-  .item {
-    margin-bottom: 20rpx;
-    width: 120rpx;
-    height: 120rpx;
-    border: 1rpx solid #f7f7f7;
-    border-radius: 20rpx;
-  }
+.cate-tit {
+  margin-bottom: 20rpx;
+  padding-left: 30rpx;
+  font-size: 28rpx;
+  border-left: 2px solid #409EFF;
+}
+
+.art-item {
+  margin-bottom: 20rpx;
 }

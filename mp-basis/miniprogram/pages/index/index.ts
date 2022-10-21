@@ -6,14 +6,20 @@ const app = getApp<IAppOption>()
 Page({
   data: {
     logo: '/images/yb.png',
-    appList: [],
-    appListHK: [],
+    articlesList: [],
     loading: false,
-    loadingHK: false,
+    activeNames: ['1'],
+  },
+  onChange(event: any) {
+    this.setData({
+      activeNames: event.detail,
+    });
   },
   clickAppItem(e: any) {
-    let appName = e.currentTarget.dataset.item["im:name"].label
-    Toast.success(appName);
+    let URL = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: `/pages/detail/detail?URL=${URL}`
+    })
   },
   onLoad() {
     // Toast.loading({
@@ -27,33 +33,18 @@ Page({
     let that = this;
     this.setData({
       loading: true,
-      loadingHK: true
     });
     wx.request({
-      url: 'https://itunes.apple.com/cn/rss/topgrossingapplications/limit=20/json',
+      url: 'https://ycy88.com/apis/getAllArticles',
       method: 'GET',
       success: function(res) {
-        let resData: any = res.data;
         that.setData({
-          appList: resData.feed.entry
+          articlesList: res.data
         });
         that.setData({
           loading: false,
         })
       }
     });
-    wx.request({
-      url: 'https://itunes.apple.com/hk/rss/topgrossingapplications/limit=20/json',
-      method: 'GET',
-      success: function(res) {
-        let resData: any = res.data;
-        that.setData({
-          appListHK: resData.feed.entry
-        });
-        that.setData({
-          loadingHK: false,
-        })
-      }
-    })
   },
 })

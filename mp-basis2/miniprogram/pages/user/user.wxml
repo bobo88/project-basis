@@ -1,0 +1,43 @@
+<!--pages/user/user.wxml-->
+<view class="container">
+  <view class="logo-box">
+    <view class="logo">
+      <van-image
+        width="100rpx"
+        height="100rpx"
+        src="https://ycy88.com/yb.png"
+      />
+    </view>
+    <view class="desc">专注于前端领域，“凡事必有回响”</view>
+  </view>
+
+  <swiper class="swiper-box" indicator-dots autoplay>
+    <swiper-item class="swiper-item item-a">VUE全家桶/ElementUI/Vant/Echarts</swiper-item>
+    <swiper-item class="swiper-item item-b">React全家桶/Material-UI/Antd</swiper-item>
+    <swiper-item class="swiper-item item-c">Gulp/Webpack/Vite/Rollup/Nginx/PM2</swiper-item>
+    <swiper-item class="swiper-item item-d">Node/Koa/Express</swiper-item>
+    <swiper-item class="swiper-item item-e">Sass/Less</swiper-item>
+  </swiper>
+  
+  <view class="blog-box">
+    <view class="user-info">个人博客网站</view>
+    <view class="blog-list">
+      <van-button class="btn-item" size="small" type="info">https://docs.ycy88.com</van-button>
+      <van-button class="btn-item" size="small" type="info">https://ycy88.com</van-button>
+    </view>
+  </view>
+
+  <view class="ghcode-box">
+    <image class="gh-code" src="/images/gh_code.jpg"></image>
+  </view>
+
+  <!-- <view class="share-box">
+    <van-button class="btn-item" size="small" type="primary">分享</van-button>
+  </view>
+  <van-share-sheet
+    show="{{ showShare }}"
+    title="立即分享给好友"
+    options="{{ options }}"
+  /> -->
+</view>
+

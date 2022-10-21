@@ -1,9 +1,9 @@
 {
   "usingComponents": {},
   "lazyCodeLoading": "requiredComponents",
-  "navigationBarBackgroundColor": "#f60",
+  "navigationBarBackgroundColor": "#07c160",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "Top free apps",
+  "navigationBarTitleText": "前端工程化",
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light"
 }
