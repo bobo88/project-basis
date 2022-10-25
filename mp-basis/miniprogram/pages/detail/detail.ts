@@ -13,7 +13,8 @@ Page({
    */
   // @ts-ignore
   onLoad(options) {
-    let computedURL = `https://docs.ycy88.com/${options.URL}.html`;
+    console.log(options, 666)
+    let computedURL = `https://docs.ycy88.com${options.URL}.html`;
     this.setData({
       URL: computedURL
     })

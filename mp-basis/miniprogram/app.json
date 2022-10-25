@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/user/user",
     "pages/index/index",
     "pages/hot/hot",
-    "pages/user/user",
     "pages/info/info",
     "pages/logs/logs",
     "pages/detail/detail"
@@ -29,31 +29,6 @@
     "van-rate": "@vant/weapp/rate/index",
     "van-collapse": "@vant/weapp/collapse/index",
     "van-collapse-item": "@vant/weapp/collapse-item/index"
-  },
-  "tabBar": {
-    "color": "#8a8a8a",
-    "selectedColor": "#1296db",
-    "borderStyle": "white",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_active.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/hot/hot",
-        "iconPath": "images/hot.png",
-        "selectedIconPath": "images/hot_active.png",
-        "text": "热门"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "iconPath": "images/user.png",
-        "selectedIconPath": "images/user_active.png",
-        "text": "用户"
-      }
-    ]
   },
   "sitemapLocation": "sitemap.json"
 }

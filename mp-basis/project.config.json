@@ -7,7 +7,7 @@
   "compileType": "miniprogram",
   "projectname": "ycy88",
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "enhance": true,
     "postcss": true,
